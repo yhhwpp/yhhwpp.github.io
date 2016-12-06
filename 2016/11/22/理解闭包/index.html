@@ -105,7 +105,8 @@
 创建闭包的通常方式，是在一个函数内部创建另一个函数。由于作用域链的结构，外围函数是无法访问内部变量的，为了能够访问内部变量，我们就可以使用闭包，闭包的本质还是函数。
 理解闭包，必须弄清执行环境，作用域这些概念，上篇文章有总结。例：123">
 <meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/1406241508-581b4feb715e3_articlex.png">
-<meta property="og:updated_time" content="2016-12-06T13:47:52.959Z">
+<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/2015120411242959.gif">
+<meta property="og:updated_time" content="2016-12-06T13:48:46.324Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解闭包">
 <meta name="twitter:description" content="MDN的解释：
@@ -370,6 +371,8 @@
 <p>解释：<br>当执行 <code>var funs = A();</code>时，只是定义，而没执行，产生环境变量的是在<code>console.log(funs[0]());</code>此时A的变量对象中i值已经是10，自然返回的都是10。</p>
 <p>解决办法1：用<code>ES6</code> 的 <code>let</code> 代替 <code>var</code>。<br>解决办法2：用立即执行函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function A()&#123;</div><div class="line">    var funs = [];</div><div class="line">    for(var i = 0; i &lt; 10; i++)&#123;</div><div class="line">       funs[i] = function tmp1(n)&#123; // tmp1可忽略不写</div><div class="line">            return function tmp2()&#123; // tmp2可忽略不写</div><div class="line">                return n;</div><div class="line">            &#125;</div><div class="line">       &#125;(i)</div><div class="line">    &#125;</div><div class="line">    return funs;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><code>tmp1</code>是立即执行函数。<em>定义之后立即执行</em>，即把i的值立即传递给n，然后再返回<code>tmp2</code>,此时执行10次，生成了10个<code>tmp2</code>的活动变量。每个<code>tmp2</code>变量对象保存的就是循环i的值。</p>
+<hr>
+<p><img src="http://ofstpx613.bkt.clouddn.com/2015120411242959.gif" alt="趣味图片"></p>
 
       
     </div>
