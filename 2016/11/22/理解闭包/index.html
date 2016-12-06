@@ -72,7 +72,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="作用域,闭包," />
+  <meta name="keywords" content="闭包,作用域," />
 
 
 
@@ -105,7 +105,8 @@
 创建闭包的通常方式，是在一个函数内部创建另一个函数。由于作用域链的结构，外围函数是无法访问内部变量的，为了能够访问内部变量，我们就可以使用闭包，闭包的本质还是函数。
 理解闭包，必须弄清执行环境，作用域这些概念，上篇文章有总结。例：123">
 <meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/1406241508-581b4feb715e3_articlex.png">
-<meta property="og:updated_time" content="2016-11-22T06:25:05.049Z">
+<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/2015120411242959.gif">
+<meta property="og:updated_time" content="2016-12-06T13:25:05.096Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解闭包">
 <meta name="twitter:description" content="MDN的解释：
@@ -369,7 +370,7 @@
 <h2 id="难点二-判断变量对象中变量的值"><a href="#难点二-判断变量对象中变量的值" class="headerlink" title="难点二: 判断变量对象中变量的值"></a>难点二: 判断变量对象中变量的值</h2><p>下面是常见的列子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function A()&#123;</div><div class="line">    var funs = [];</div><div class="line">    for(var i=0; i&lt;10; i++)&#123;</div><div class="line">       funs[i] = function()&#123;</div><div class="line">           return i;</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line">    return funs;</div><div class="line">&#125;</div><div class="line">var fn = A(); // 定义funs[0]-funs[9]，10个函数</div><div class="line">console.log(fn[0]()); // 10</div><div class="line">console.log(fn[1]()); // 10</div></pre></td></tr></table></figure></p>
 <p>解释：<br>当执行 <code>var funs = A();</code>时，只是定义，而没执行，产生环境变量的是在<code>console.log(funs[0]());</code>此时A的变量对象中i值已经是10，自然返回的都是10。</p>
 <p>解决办法1：用<code>ES6</code> 的 <code>let</code> 代替 <code>var</code>。<br>解决办法2：用立即执行函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function A()&#123;</div><div class="line">    var funs = [];</div><div class="line">    for(var i = 0; i &lt; 10; i++)&#123;</div><div class="line">       funs[i] = function tmp1(n)&#123; // tmp1可忽略不写</div><div class="line">            return function tmp2()&#123; // tmp2可忽略不写</div><div class="line">                return n;</div><div class="line">            &#125;</div><div class="line">       &#125;(i)</div><div class="line">    &#125;</div><div class="line">    return funs;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>tmp1</code>是立即执行函数。<strong>定义之后立即执行</strong>，即把i的值立即传递给n，然后再返回<code>tmp2</code>,此时执行10次，生成了10个<code>tmp2</code>的活动变量。每个<code>tmp2</code>变量对象保存的就是循环i的值。</p>
+<h2 id="tmp1是立即执行函数。定义之后立即执行，即把i的值立即传递给n，然后再返回tmp2-此时执行10次，生成了10个tmp2的活动变量。每个tmp2变量对象保存的就是循环i的值。"><a href="#tmp1是立即执行函数。定义之后立即执行，即把i的值立即传递给n，然后再返回tmp2-此时执行10次，生成了10个tmp2的活动变量。每个tmp2变量对象保存的就是循环i的值。" class="headerlink" title="tmp1是立即执行函数。定义之后立即执行，即把i的值立即传递给n，然后再返回tmp2,此时执行10次，生成了10个tmp2的活动变量。每个tmp2变量对象保存的就是循环i的值。"></a><code>tmp1</code>是立即执行函数。<strong>定义之后立即执行</strong>，即把i的值立即传递给n，然后再返回<code>tmp2</code>,此时执行10次，生成了10个<code>tmp2</code>的活动变量。每个<code>tmp2</code>变量对象保存的就是循环i的值。</h2><p><img src="http://ofstpx613.bkt.clouddn.com/2015120411242959.gif" alt="趣味图片"></p>
 
       
     </div>
@@ -392,9 +393,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/作用域/" rel="tag">#作用域</a>
-          
             <a href="/tags/闭包/" rel="tag">#闭包</a>
+          
+            <a href="/tags/作用域/" rel="tag">#作用域</a>
           
         </div>
       
@@ -553,7 +554,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#难点一-判断作用域指向的变量对象是否相同"><span class="nav-number">1.</span> <span class="nav-text">难点一: 判断作用域指向的变量对象是否相同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#难点二-判断变量对象中变量的值"><span class="nav-number">2.</span> <span class="nav-text">难点二: 判断变量对象中变量的值</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#难点一-判断作用域指向的变量对象是否相同"><span class="nav-number">1.</span> <span class="nav-text">难点一: 判断作用域指向的变量对象是否相同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#难点二-判断变量对象中变量的值"><span class="nav-number">2.</span> <span class="nav-text">难点二: 判断变量对象中变量的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tmp1是立即执行函数。定义之后立即执行，即把i的值立即传递给n，然后再返回tmp2-此时执行10次，生成了10个tmp2的活动变量。每个tmp2变量对象保存的就是循环i的值。"><span class="nav-number">3.</span> <span class="nav-text">tmp1是立即执行函数。定义之后立即执行，即把i的值立即传递给n，然后再返回tmp2,此时执行10次，生成了10个tmp2的活动变量。每个tmp2变量对象保存的就是循环i的值。</span></a></li></ol></div>
             
           </div>
         </section>
