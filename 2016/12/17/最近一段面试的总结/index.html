@@ -72,7 +72,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Git," />
+  <meta name="keywords" content="面试,总结," />
 
 
 
@@ -88,25 +88,42 @@
 
 
 
-<meta name="description" content="git reset 、 git checkout 和 git revert 是Git中常用命令。经常傻傻分不清他们之间的区别。最近工作不忙，抽出时间参考了其他文档，对其总结了下。">
+<meta name="description" content="前言前端时间面了几家公司，陆续收到一些offer，最终选择一家做智能家居的公司，感觉以后物联网更会有发展前途。在新公司上班又一周时间，架构跟业务基本都是熟悉了，凑着星期天，对前端时间的问题总结。
+HTML
+对 DIV， Table 布局的理解
+语义化的HTML理解
+对HTML5的理解
+对doctype的理解
+…
+
+其他都很简单，我主要说说对doctype的理解，之前熟悉个大概，但是自己感觉没有表达">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 中 Reset、Revert、Checkout的区别">
-<meta property="og:url" content="https://yhhwpp.github.io/2016/10/31/Git-中-Reset、Revert、Checkout的区别/index.html">
+<meta property="og:title" content="最近一段面试的总结">
+<meta property="og:url" content="https://yhhwpp.github.io/2016/12/17/最近一段面试的总结/index.html">
 <meta property="og:site_name" content="yhhwpp的博客">
-<meta property="og:description" content="git reset 、 git checkout 和 git revert 是Git中常用命令。经常傻傻分不清他们之间的区别。最近工作不忙，抽出时间参考了其他文档，对其总结了下。">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/91DB.tmp.jpg">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/F85D.tmp.jpg">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/E1F2.tmp.jpg">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/A16B.tmp.jpg">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/E7B0.tmp.jpg">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/78F9.tmp.jpg">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/3B21.tmp.jpg">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/01-dreamygirl_400x300_v2.gif">
-<meta property="og:updated_time" content="2016-11-03T14:09:47.289Z">
+<meta property="og:description" content="前言前端时间面了几家公司，陆续收到一些offer，最终选择一家做智能家居的公司，感觉以后物联网更会有发展前途。在新公司上班又一周时间，架构跟业务基本都是熟悉了，凑着星期天，对前端时间的问题总结。
+HTML
+对 DIV， Table 布局的理解
+语义化的HTML理解
+对HTML5的理解
+对doctype的理解
+…
+
+其他都很简单，我主要说说对doctype的理解，之前熟悉个大概，但是自己感觉没有表达">
+<meta property="og:image" content="http://ohwhjizw4.bkt.clouddn.com/sleeping_beauty.gif">
+<meta property="og:updated_time" content="2016-12-17T11:18:29.355Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git 中 Reset、Revert、Checkout的区别">
-<meta name="twitter:description" content="git reset 、 git checkout 和 git revert 是Git中常用命令。经常傻傻分不清他们之间的区别。最近工作不忙，抽出时间参考了其他文档，对其总结了下。">
-<meta name="twitter:image" content="http://ofstpx613.bkt.clouddn.com/91DB.tmp.jpg">
+<meta name="twitter:title" content="最近一段面试的总结">
+<meta name="twitter:description" content="前言前端时间面了几家公司，陆续收到一些offer，最终选择一家做智能家居的公司，感觉以后物联网更会有发展前途。在新公司上班又一周时间，架构跟业务基本都是熟悉了，凑着星期天，对前端时间的问题总结。
+HTML
+对 DIV， Table 布局的理解
+语义化的HTML理解
+对HTML5的理解
+对doctype的理解
+…
+
+其他都很简单，我主要说说对doctype的理解，之前熟悉个大概，但是自己感觉没有表达">
+<meta name="twitter:image" content="http://ohwhjizw4.bkt.clouddn.com/sleeping_beauty.gif">
 
 
 
@@ -127,10 +144,10 @@
 
 
 
-  <link rel="canonical" href="https://yhhwpp.github.io/2016/10/31/Git-中-Reset、Revert、Checkout的区别/"/>
+  <link rel="canonical" href="https://yhhwpp.github.io/2016/12/17/最近一段面试的总结/"/>
 
 
-  <title> Git 中 Reset、Revert、Checkout的区别 | yhhwpp的博客 </title>
+  <title> 最近一段面试的总结 | yhhwpp的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +287,7 @@
             
             
               
-                Git 中 Reset、Revert、Checkout的区别
+                最近一段面试的总结
               
             
           </h1>
@@ -282,8 +299,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-31T21:39:40+08:00" content="2016-10-31">
-              2016-10-31
+            <time itemprop="dateCreated" datetime="2016-12-17T17:26:39+08:00" content="2016-12-17">
+              2016-12-17
             </time>
           </span>
 
@@ -296,8 +313,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
                   </a>
                 </span>
 
@@ -312,8 +329,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/31/Git-中-Reset、Revert、Checkout的区别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/31/Git-中-Reset、Revert、Checkout的区别/" itemprop="commentsCount"></span>
+                <a href="/2016/12/17/最近一段面试的总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/17/最近一段面试的总结/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -323,7 +340,7 @@
 
           
           
-             <span id="/2016/10/31/Git-中-Reset、Revert、Checkout的区别/" class="leancloud_visitors" data-flag-title="Git 中 Reset、Revert、Checkout的区别">
+             <span id="/2016/12/17/最近一段面试的总结/" class="leancloud_visitors" data-flag-title="最近一段面试的总结">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -345,91 +362,90 @@
       
 
       
-        <p><code>git reset</code> 、 <code>git checkout</code> 和 <code>git revert</code> 是Git中常用命令。经常傻傻分不清他们之间的区别。最近工作不忙，抽出时间参考了其他文档，对其总结了下。</p>
-<a id="more"></a>
-<h2 id="提交层面的操作"><a href="#提交层面的操作" class="headerlink" title="提交层面的操作"></a>提交层面的操作</h2><p>传给 <code>git reset</code> 和 <code>git checkout</code> 的参数决定了它们的作用域。如果其后参数不是 <code>filename</code>，这些操作对所有提交生效。注意，<code>git revert</code>没有文件层面的操作。</p>
-<h3 id="Reset"><a href="#Reset" class="headerlink" title="Reset"></a>Reset</h3><p>在提交层面上，<code>reset</code> 将一个分支的末端指向另一个提交。这可以用来移除当前分支的一些提交。例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git checkout hotfix</div><div class="line">git reset HEAD~2</div></pre></td></tr></table></figure>
-<p><img src="http://ofstpx613.bkt.clouddn.com/91DB.tmp.jpg" alt="把hotfix分支reset到HEAD~2"></p>
-<p>hotfix分支末端的两个提交现在变成了悬挂提交。下次Git执行垃圾回收的时候，这两个提交会被删除。</p>
-<p>如果你的更改还没有共享给别人，<code>git reset</code>是撤销这些更改的简单方法。</p>
-<p>除了在当前分支上操作，你还可以通过传入这些标记来修改你的缓存区或工作目录：</p>
-<ul>
-<li>–soft – 缓存区和工作目录都不会被改变</li>
-<li>–mixed – 默认选项。缓存区和你指定的提交同步，但工作目录不受影响</li>
-<li>–hard – 缓存区和工作目录都同步到你指定的提交</li>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前端时间面了几家公司，陆续收到一些offer，最终选择一家做智能家居的公司，感觉以后物联网更会有发展前途。在新公司上班又一周时间，架构跟业务基本都是熟悉了，凑着星期天，对前端时间的问题总结。</p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><ul>
+<li>对 DIV， Table 布局的理解</li>
+<li>语义化的HTML理解</li>
+<li>对HTML5的理解</li>
+<li>对doctype的理解</li>
+<li>…</li>
 </ul>
-<p><img src="http://ofstpx613.bkt.clouddn.com/F85D.tmp.jpg" alt="git rese的定义域"></p>
-<h3 id="Checkout"><a href="#Checkout" class="headerlink" title="Checkout"></a>Checkout</h3><p>常见于切换不同分支。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout hotfix</div></pre></td></tr></table></figure>
-<p>这个命令做的是将<code>HEAD</code>移到一个新的分支，然后更新工作目录。因为这可能会覆盖本地的修改，Git强制你提交或者缓存工作目录中的所有更改，不然在<code>checkout</code>的时候这些更改都会丢失。和<code>git reset</code>不一样的是，<code>git checkout</code>没有移动这些分支。</p>
-<p><img src="http://ofstpx613.bkt.clouddn.com/E1F2.tmp.jpg" alt="将 HEAD 从 master 移到 hotfix"></p>
-<p>除了分支之外，你还可以传入提交的引用来checkout到任意的提交。这和checkout到另一个分支是完全一样的：把HEAD移动到特定的提交。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout HEAD~2</div></pre></td></tr></table></figure>
-<p><img src="http://ofstpx613.bkt.clouddn.com/A16B.tmp.jpg" alt="将HEAD移动到任意commit"></p>
-<p>这对于快速查看项目旧版本来说非常有用。但如果你当前的HEAD没有任何分支引用，那么这会造成HEAD分离。这是<strong>非常危险</strong>的，如果你接着添加新的提交，然后切换到别的分支之后就没办法回到之前添加的这些提交。因此，<strong>在为分离的HEAD添加新的提交的时候你应该创建一个新的分支</strong>。</p>
-<h3 id="Revert"><a href="#Revert" class="headerlink" title="Revert"></a>Revert</h3><p>Revert撤销一个提交的同时会创建一个新的提交。这是一个安全的方法，因为它不会重写提交历史。比如，下面的命令会找出倒数第二个提交，然后创建一个新的提交来撤销这些更改，然后把这个提交加入项目中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git checkout hotfix</div><div class="line">git revert HEAD~2</div></pre></td></tr></table></figure>
-<p><img src="http://ofstpx613.bkt.clouddn.com/E7B0.tmp.jpg" alt="revert到倒数第二个commit"></p>
-<p>相比<code>git reset</code>，它不会改变现在的提交历史。因此，<code>git revert</code> 可以用在公共分支上，<code>git reset</code> 应该用在私有分支上。</p>
-<p>你也可以把<code>git revert</code> 当作撤销已经提交的更改，而<code>git reset HEAD</code> 用来撤销没有提交的更改。</p>
-<p>就像<code>git checkout</code> 一样，<code>git revert</code> 也有可能会重写文件。所以，Git会在你执行 <code>revert</code> 之前要求你提交或者缓存你工作目录中的更改。</p>
-<h2 id="文件层面的操作"><a href="#文件层面的操作" class="headerlink" title="文件层面的操作"></a>文件层面的操作</h2><p><code>git reset</code>和<code>git checkout</code> 命令也接受文件路径作为参数。这时它的行为就大为不同了。</p>
-<h3 id="Reset-1"><a href="#Reset-1" class="headerlink" title="Reset"></a>Reset</h3><p>当检测到文件路径时，<code>git reset</code> 将缓存区同步到你指定的那个提交。比如，下面这个命令会将倒数第二个提交中的foo.py加入到缓存区中，供下一个提交使用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset HEAD~2 foo.py</div></pre></td></tr></table></figure>
-<p>和提交层面的<code>git reset</code>一样，通常我们使用HEAD而不是某个特定的提交。运行<code>git reset HEAD foo.py</code> 会将当前的foo.py从缓存区中移除出去，而不会影响工作目录中对foo.py的更改。</p>
-<p><img src="http://ofstpx613.bkt.clouddn.com/78F9.tmp.jpg" alt="将一个文件从commit历史中移动到stage缓存中"></p>
-<p>–soft、–mixed和–hard对文件层面的<code>git reset</code>毫无作用，因为缓存区中的文件一定会变化，而工作目录中的文件一定不变。</p>
-<h3 id="Checkout-1"><a href="#Checkout-1" class="headerlink" title="Checkout"></a>Checkout</h3><p>Checkout一个文件和带文件路径<code>git reset</code> 非常像，除了它更改的是工作目录而不是缓存区。不像提交层面的checkout命令，它不会移动HEAD引用，也就是你不会切换到别的分支上去。</p>
-<p><img src="http://ofstpx613.bkt.clouddn.com/3B21.tmp.jpg" alt="将文件从提交历史移动到工作目录中"></p>
-<p>比如，下面这个命令将工作目录中的foo.py同步到了倒数第二个提交中的foo.py。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout HEAD~2 foo.py</div></pre></td></tr></table></figure>
-<p>和提交层面相同的是，它可以用来检查项目的旧版本，但作用域被限制到了特定文件。</p>
-<p>如果你缓存并且提交了checkout的文件，它具备将某个文件回撤到之前版本的效果。注意它撤销了这个文件后面所有的更改，而<code>git revert</code> 命令只撤销某个特定提交的更改。</p>
-<p>和<code>git reset</code> 一样，这个命令通常和HEAD一起使用。比如<code>git checkout HEAD foo.py</code>等同于舍弃foo.py没有缓存的更改。这个行为和<code>git reset HEAD --hard</code>很像，但只影响特定文件。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">命令</th>
-<th style="text-align:center">作用域</th>
-<th style="text-align:left">常用情景</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">git reset</td>
-<td style="text-align:center">提交层面</td>
-<td style="text-align:left">在私有分支上舍弃一些没有提交的更改</td>
-</tr>
-<tr>
-<td style="text-align:center">git reset</td>
-<td style="text-align:center">文件层面</td>
-<td style="text-align:left">将文件从缓存区中移除</td>
-</tr>
-<tr>
-<td style="text-align:center">git checkout</td>
-<td style="text-align:center">提交层面</td>
-<td style="text-align:left">切换分支或查看旧版本</td>
-</tr>
-<tr>
-<td style="text-align:center">git checkout</td>
-<td style="text-align:center">文件层面</td>
-<td style="text-align:left">舍弃工作目录中的更改</td>
-</tr>
-<tr>
-<td style="text-align:center">git revert</td>
-<td style="text-align:center">提交层面</td>
-<td style="text-align:left">在公共分支上回滚更改</td>
-</tr>
-<tr>
-<td style="text-align:center">git revert</td>
-<td style="text-align:center">文件层面</td>
-<td style="text-align:left">（<strong>木有</strong>）</td>
-</tr>
-</tbody>
-</table>
+<p>其他都很简单，我主要说说对doctype的理解，之前熟悉个大概，但是自己感觉没有表达清楚。</p>
+<p><code>&lt;!DOCTYPE&gt;</code>处于<code>&lt;html&gt;</code>标签之前，此标签可告知浏览器文档使用哪种HTML或XHTML规范。<br>该标签可声明三种DTD类型，分别表示严格版本、过渡版本以及基于框架的HTML版本（假如文档中的标记不遵循doctype声明所指定的DTD，这个文档除了不能通过代码校验之外，还有可能无法在浏览器中正确显示。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</div></pre></td></tr></table></figure>
+<p>解析：在上面的声明中，声明了文档的根元素是 html，它在公共标识符被定义为 “-//W3C//DTD XHTML 1.0 Strict//EN” 的 DTD 中进行了定义。浏览器将明白如何寻找匹配此公共标识符的 DTD。如果找不到，浏览器将使用公共标识符后面的 URL 作为寻找 DTD 的位置。</p>
+<ul>
+<li><ul>
+<li>：  表示组织名称未注册。Internet 工程任务组(IETF)和万维网协会(W3C)并非注册的 ISO 组织。+为默认,表示组织名称已注册。</li>
+</ul>
+</li>
+<li>DTD ： 指定公开文本类，即所引用的对象类型。 默认为DTD（document type definition）。</li>
+<li>HTML：指定公开文本描述，即对所引用的公开文本的唯一描述性名称。后面可附带版本号。默认为HTML。</li>
+<li>URL：指定所引用对象的位置。</li>
+<li>Strict：排除所有 W3C 专家希望逐步淘汰的代表性属性和元素。</li>
+</ul>
+<h3 id="三种HTML文档类型"><a href="#三种HTML文档类型" class="headerlink" title="三种HTML文档类型"></a>三种HTML文档类型</h3><p>HTML 4.01 规定了三种文档类型：Strict、Transitional 以及 Frameset</p>
+<ul>
+<li>Strict：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot; http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果需要干净的标记，免于表现层的混乱，用HTML Strict DTD类型。</p>
+<ul>
+<li>Transitional：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot; http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Transitional DTD 可包含 W3C 所期望移入样式表的呈现属性和元素. 如果用户使用了不支持层叠样式表（CSS）的浏览器以至于你不得不使用 HTML 的呈现特性时，用 Transitional DTD 类型</p>
+<ul>
+<li>Frameset：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Frameset//EN&quot; &quot; http://www.w3.org/TR/html4/frameset.dtd&quot;&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Frameset DTD 被用于带有框架的文档。除 frameset 元素取代了 body 元素之外，Frameset DTD 等同于 Transitional DTD</p>
+<h3 id="三种-XML-文档类型："><a href="#三种-XML-文档类型：" class="headerlink" title="三种 XML 文档类型："></a>三种 XML 文档类型：</h3><ul>
+<li>Strict</li>
+<li>Transitional</li>
+<li>Frameset</li>
+</ul>
+<p>XHTML 1就是HTML 4.01的XML化，是一种不向前兼容的格式。</p>
+<p>最新的 HTML5的doctype 不需要对DTD引用。</p>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><ul>
+<li>盒子模型的理解</li>
+<li><code>box-sizing</code>的理解</li>
+<li><code>positon</code>的理解</li>
+<li>如何清除浮动</li>
+<li>选择器的权重</li>
+<li>实现上下作用居中的几种方法</li>
+<li>css的解析顺序，link 引入 与import引入的区别</li>
+<li>…</li>
+</ul>
+<p>我主要说一下最后一个问题。</p>
+<p>css的解析顺序 是从右往左的，这点非常重要，可以主导你写出快速选择的高效的css选择器。<br>link引入的按照顺序同步加载的而@import引入的css需要等待页面加载完成才会加载，是异步的。</p>
+<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><p>js问的问题比较多，我只能回忆一些部分内容</p>
+<ul>
+<li>闭包的理解，及运用的一些问题</li>
+<li>原型链理解</li>
+<li>事件冒泡理解</li>
+<li>函数声明，变量提升一些问题</li>
+<li>正则表达式的运用（一看到正则我就会蒙圈，还要好好学习）</li>
+<li>实现深拷贝的功能。有很多方法，最简单的是<code>Object.create()</code>。其他方法参见之前的博客</li>
+<li>用原生js实现Jquery的链式操作。最简单的方式在每个方法里<code>return this</code>，其他的可参照Jquery，underscore的实现方法。</li>
+<li>Cookie， SessionStorage， Localstorage区别及运用</li>
+<li>多种方法实现继承。（红宝书里有详细说明，最经典的实现方式是原型，然后还有组合继承，寄生式继承，寄生组合式继承）</li>
+<li>轮询，长连接，实时通讯的理解（再一次蒙圈，不知道）</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>SEO了解吗</li>
+<li>img 的 alt 跟 title区别（alt是当图片不存在时的替代文字,爬虫读的属性;title是对图片的描述与进一步说明，也就是鼠标移动上去显示的文字）</li>
+<li>HTTP 的头部了解（我只能说出大概，有时间买呗HTTP的书籍好好研究研究）</li>
+<li>前端如何优化（雅虎36条军规）</li>
+<li>一些状态码了解</li>
+<li>XSS，CSTF了解吗，如何防范（蒙圈）</li>
+<li>对前端工程化的了解</li>
+<li>对当前流行的MVVM框架原理了解吗（又蒙圈了，哥只会用，并不鸟姐其原理）</li>
+<li>算法数据结构熟悉吗（哥是半路出家，这些高大上的东西还在研究）</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总之很多面试考察的都是基础，总体面试还不错，关于 HTTP 以及 算法，MVVM的原理，正则等这些问题还要好好学习研究</p>
 <hr>
-<p><img src="http://ofstpx613.bkt.clouddn.com/01-dreamygirl_400x300_v2.gif" alt="趣味图片"></p>
+<p><img src="http://ohwhjizw4.bkt.clouddn.com/sleeping_beauty.gif" alt="趣味图片"></p>
 
       
     </div>
@@ -452,7 +468,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Git/" rel="tag">#Git</a>
+            <a href="/tags/面试/" rel="tag">#面试</a>
+          
+            <a href="/tags/总结/" rel="tag">#总结</a>
           
         </div>
       
@@ -461,17 +479,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/29/git-intall-step/" rel="next" title="Git 安装教程">
-                <i class="fa fa-chevron-left"></i> Git 安装教程
+              <a href="/2016/11/22/理解闭包/" rel="next" title="理解闭包">
+                <i class="fa fa-chevron-left"></i> 理解闭包
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/02/SSH-keys与Deploy-keys的区别/" rel="prev" title="SSH keys与Deploy keys的区别">
-                SSH keys与Deploy keys的区别 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -497,8 +511,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/31/Git-中-Reset、Revert、Checkout的区别/"
-           data-title="Git 中 Reset、Revert、Checkout的区别" data-url="https://yhhwpp.github.io/2016/10/31/Git-中-Reset、Revert、Checkout的区别/">
+      <div class="ds-thread" data-thread-key="2016/12/17/最近一段面试的总结/"
+           data-title="最近一段面试的总结" data-url="https://yhhwpp.github.io/2016/12/17/最近一段面试的总结/">
       </div>
     
   </div>
@@ -615,7 +629,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#提交层面的操作"><span class="nav-number">1.</span> <span class="nav-text">提交层面的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reset"><span class="nav-number">1.1.</span> <span class="nav-text">Reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Checkout"><span class="nav-number">1.2.</span> <span class="nav-text">Checkout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Revert"><span class="nav-number">1.3.</span> <span class="nav-text">Revert</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件层面的操作"><span class="nav-number">2.</span> <span class="nav-text">文件层面的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reset-1"><span class="nav-number">2.1.</span> <span class="nav-text">Reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Checkout-1"><span class="nav-number">2.2.</span> <span class="nav-text">Checkout</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">2.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三种HTML文档类型"><span class="nav-number">2.1.</span> <span class="nav-text">三种HTML文档类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种-XML-文档类型："><span class="nav-number">2.2.</span> <span class="nav-text">三种 XML 文档类型：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">3.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS"><span class="nav-number">4.</span> <span class="nav-text">JS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>
