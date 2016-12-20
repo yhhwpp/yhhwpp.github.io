@@ -72,7 +72,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Git," />
+  <meta name="keywords" content="闭包,函数," />
 
 
 
@@ -88,22 +88,24 @@
 
 
 
-<meta name="description" content="Git 用了很久了，家里电脑每次重装系统后，Git 都必须重新装，由于本人英语能力有限，每次安装选项不知如何选择，只能每次都要 google 一番，为防止此弱智行为，特此记录。">
+<meta name="description" content="立即执行函数今天无意中看到下面的立即执行函数的一种写法：123!function()&amp;#123;// do something&amp;#125;();
+傻傻搞不懂的，google了一番：原因是：“function(){}()”并不是合法的EcmaScript字符串，而“!function(){}()”是，
+匿名函数附近使用括号或一些一元运算符的之后，就会告诉引擎运算符附近是一个表达式，所以上面是跟(fu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 安装教程">
-<meta property="og:url" content="https://yhhwpp.github.io/2016/10/29/git-intall-step/index.html">
+<meta property="og:title" content="立即执行函数的写法">
+<meta property="og:url" content="https://yhhwpp.github.io/2016/12/20/立即执行函数的写法/index.html">
 <meta property="og:site_name" content="yhhwpp的博客">
-<meta property="og:description" content="Git 用了很久了，家里电脑每次重装系统后，Git 都必须重新装，由于本人英语能力有限，每次安装选项不知如何选择，只能每次都要 google 一番，为防止此弱智行为，特此记录。">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/3BB0.tmp.png">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/525D.tmp.png">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/6B4C.tmp.png">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/7F98.tmp.png">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/42BA.tmp.png">
-<meta property="og:updated_time" content="2016-11-02T13:40:19.319Z">
+<meta property="og:description" content="立即执行函数今天无意中看到下面的立即执行函数的一种写法：123!function()&amp;#123;// do something&amp;#125;();
+傻傻搞不懂的，google了一番：原因是：“function(){}()”并不是合法的EcmaScript字符串，而“!function(){}()”是，
+匿名函数附近使用括号或一些一元运算符的之后，就会告诉引擎运算符附近是一个表达式，所以上面是跟(fu">
+<meta property="og:image" content="http://ohwhjizw4.bkt.clouddn.com/dog03.gif">
+<meta property="og:updated_time" content="2016-12-20T14:40:26.034Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git 安装教程">
-<meta name="twitter:description" content="Git 用了很久了，家里电脑每次重装系统后，Git 都必须重新装，由于本人英语能力有限，每次安装选项不知如何选择，只能每次都要 google 一番，为防止此弱智行为，特此记录。">
-<meta name="twitter:image" content="http://ofstpx613.bkt.clouddn.com/3BB0.tmp.png">
+<meta name="twitter:title" content="立即执行函数的写法">
+<meta name="twitter:description" content="立即执行函数今天无意中看到下面的立即执行函数的一种写法：123!function()&amp;#123;// do something&amp;#125;();
+傻傻搞不懂的，google了一番：原因是：“function(){}()”并不是合法的EcmaScript字符串，而“!function(){}()”是，
+匿名函数附近使用括号或一些一元运算符的之后，就会告诉引擎运算符附近是一个表达式，所以上面是跟(fu">
+<meta name="twitter:image" content="http://ohwhjizw4.bkt.clouddn.com/dog03.gif">
 
 
 
@@ -124,10 +126,10 @@
 
 
 
-  <link rel="canonical" href="https://yhhwpp.github.io/2016/10/29/git-intall-step/"/>
+  <link rel="canonical" href="https://yhhwpp.github.io/2016/12/20/立即执行函数的写法/"/>
 
 
-  <title> Git 安装教程 | yhhwpp的博客 </title>
+  <title> 立即执行函数的写法 | yhhwpp的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +269,7 @@
             
             
               
-                Git 安装教程
+                立即执行函数的写法
               
             
           </h1>
@@ -279,8 +281,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-29T16:40:36+08:00" content="2016-10-29">
-              2016-10-29
+            <time itemprop="dateCreated" datetime="2016-12-20T22:14:21+08:00" content="2016-12-20">
+              2016-12-20
             </time>
           </span>
 
@@ -293,8 +295,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
                   </a>
                 </span>
 
@@ -309,8 +311,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/29/git-intall-step/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/29/git-intall-step/" itemprop="commentsCount"></span>
+                <a href="/2016/12/20/立即执行函数的写法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/20/立即执行函数的写法/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,7 +322,7 @@
 
           
           
-             <span id="/2016/10/29/git-intall-step/" class="leancloud_visitors" data-flag-title="Git 安装教程">
+             <span id="/2016/12/20/立即执行函数的写法/" class="leancloud_visitors" data-flag-title="立即执行函数的写法">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -342,23 +344,18 @@
       
 
       
-        <p><code>Git</code> 用了很久了，家里电脑每次重装系统后，<code>Git</code> 都必须重新装，由于本人英语能力有限，每次安装选项不知如何选择，只能每次都要 <code>google</code> 一番，为防止此弱智行为，特此记录。</p>
-<a id="more"></a>
-<h3 id="step1"><a href="#step1" class="headerlink" title="step1"></a>step1</h3><p><img src="http://ofstpx613.bkt.clouddn.com/3BB0.tmp.png" alt="Git-step-1"><br>第一步很简单，这里我只安装了 <code>Git Bash</code> ， <code>Git GUI</code> 页面简陋，用 <code>SourceTree</code> 代替。</p>
-<h3 id="step2"><a href="#step2" class="headerlink" title="step2"></a>step2</h3><p><img src="http://ofstpx613.bkt.clouddn.com/525D.tmp.png" alt="Git-step-2"><br>第二步，设置环境变量，选择使用的命令行工具，这里我选择默认的 <code>Git</code> 自带的 <code>Git Bash</code>。</p>
-<h3 id="step3"><a href="#step3" class="headerlink" title="step3"></a>step3</h3><p><img src="http://ofstpx613.bkt.clouddn.com/6B4C.tmp.png" alt="Git-step-3"><br>第三步，是设置处理 <code>line endings</code>的方式。<br>在文本处理中，<code>CR/LF</code> 是不同操作系统上使用的换行符：</p>
-<ul>
-<li><code>Dos</code> 和<code>windows</code> 采用回车 + 换行 <code>CR/LF</code> 表示下一行</li>
-<li><code>Unix</code> / <code>Linux</code> 采用换行符<code>LF</code>表示下一行</li>
-<li><code>OS</code> 则采用<code>CR</code>表示下一行</li>
-</ul>
-<h4 id="CR-与-LF-区别："><a href="#CR-与-LF-区别：" class="headerlink" title="CR 与 LF 区别："></a><code>CR</code> 与 <code>LF</code> 区别：</h4><ul>
-<li><code>CR</code> 用符号 <code>\r</code> 表示，十进制 <code>ASCII</code> 代码是13，十六进制代码为 <code>0x0D</code></li>
-<li><code>LF</code> 使用 <code>\n</code> 符号表示，ASCII代码是10，十六制为<code>0x0A</code></li>
-</ul>
-<p>这里我选择第一项，将提交时候 <code>windows</code> 的 <code>CRLF</code> 会自动转化转化为Unix的 <code>LF</code>，<br>也可以设置不转换，配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config --global core.autocrlf true</div></pre></td></tr></table></figure></p>
-<h3 id="step4"><a href="#step4" class="headerlink" title="step4"></a>step4</h3><p><img src="http://ofstpx613.bkt.clouddn.com/7F98.tmp.png" alt="Git-step-5"><br>第四步，是配置终端模拟器，我这里选择默认的选项，<code>windows</code> 的 <code>console</code> 窗口太丑。</p>
-<h3 id="step5"><a href="#step5" class="headerlink" title="step5"></a>step5</h3><p><img src="http://ofstpx613.bkt.clouddn.com/42BA.tmp.png" alt="Git-step-3"><br>第五步，配置额外的选项，选择默认配置。</p>
+        <h2 id="立即执行函数"><a href="#立即执行函数" class="headerlink" title="立即执行函数"></a>立即执行函数</h2><p>今天无意中看到下面的立即执行函数的一种写法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">!function()&#123;</div><div class="line">// do something</div><div class="line">&#125;();</div></pre></td></tr></table></figure></p>
+<p>傻傻搞不懂的，google了一番：原因是：<br><strong>“function(){}()”并不是合法的EcmaScript字符串，而“!function(){}()”是</strong>，</p>
+<p>匿名函数附近使用括号或一些一元运算符的之后，就会告诉引擎运算符附近是一个表达式，<br>所以上面是跟<code>(function(){}())</code>的作用是一样的，只是引导JavaScript解析器，指明<code>functiontion(){}()</code>是函数表达式，不是函数声。在后面加括号，并立即执行函数的代码。</p>
+<p>加括号是最安全的做法，因为！、+、-等运算符还会和函数的返回值进行运算，不建议使用这些运算符。<br>常见的立即执行函数有以下两种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(function()&#123;</div><div class="line">  ...</div><div class="line">&#125;)()</div><div class="line"></div><div class="line">(function()&#123;</div><div class="line">  ...</div><div class="line">&#125;())</div></pre></td></tr></table></figure></p>
+<p>要理解立即执行函数，需要先理解一些函数的基本概念。</p>
+<h2 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h2><p>使用function关键字声明一个函数，再指定一个函数名，叫函数声明。主要存在”函数声明提升”。<br>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function funA() &#123;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h2><p>使用function关键字声明一个函数，但未给函数命名（当然可以你可以给个名称，但是没有意义，一般省略），最后将匿名函数赋予一个变量，叫函数表达式，这是最常见的函数表达式语法形式。函数表达式必须要等到引擎执行到它所在行，才上而下一行一行地解析函数表达式。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var funA = function() &#123;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><p>使用function关键字声明一个函数，但未给函数命名，所以叫匿名函数，匿名函数属于函数表达式，匿名函数有很多作用，赋予一个变量则创建函数，赋予一个事件则成为事件处理程序或创建闭包等等。如开头的理解执行函数里的函数。</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">funA();</div><div class="line">function funA()&#123;</div><div class="line">    ...</div><div class="line">&#125;//正常，因为‘提升’了函数声明，函数调用可在函数声明之前</div><div class="line"> </div><div class="line">funA();</div><div class="line">var funA=function()&#123;</div><div class="line">    ...</div><div class="line">&#125;//报错，变量funA还未保存对函数的引用，函数调用必须在函数表达式之后</div><div class="line"></div><div class="line">var funA=function()&#123;</div><div class="line">    ...</div><div class="line">&#125;();//函数表达式后面加括号，当javascript引擎解析到此处时能立即调用函数</div><div class="line"></div><div class="line">function funA()&#123;</div><div class="line">    ...</div><div class="line">&#125;();//报错，因为这里的()是分隔符，里面有内容</div><div class="line">function funA()&#123;</div><div class="line">    ...</div><div class="line">&#125;(1);</div><div class="line">不会报错，相当于先声明了funA，然后再执行括号里的内容，相当于括号前面加个`;`</div><div class="line"></div><div class="line">function()&#123;</div><div class="line">    ...    </div><div class="line">&#125;();//报语法错误，JavaScript无法正常编译。</div></pre></td></tr></table></figure>
+<hr>
+<center><img src="http://ohwhjizw4.bkt.clouddn.com/dog03.gif" style="width: 400px;"></center>
 
       
     </div>
@@ -381,7 +378,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Git/" rel="tag">#Git</a>
+            <a href="/tags/闭包/" rel="tag">#闭包</a>
+          
+            <a href="/tags/函数/" rel="tag">#函数</a>
           
         </div>
       
@@ -390,12 +389,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/12/17/最近一段面试的总结/" rel="next" title="最近一段面试的总结">
+                <i class="fa fa-chevron-left"></i> 最近一段面试的总结
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/31/Git-中-Reset、Revert、Checkout的区别/" rel="prev" title="Git 中 Reset、Revert、Checkout的区别">
-                Git 中 Reset、Revert、Checkout的区别 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/20/前端读书清单（长期更新）/" rel="prev" title="前端读书以及源码研究清单（长期更新）">
+                前端读书以及源码研究清单（长期更新） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -422,8 +425,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/29/git-intall-step/"
-           data-title="Git 安装教程" data-url="https://yhhwpp.github.io/2016/10/29/git-intall-step/">
+      <div class="ds-thread" data-thread-key="2016/12/20/立即执行函数的写法/"
+           data-title="立即执行函数的写法" data-url="https://yhhwpp.github.io/2016/12/20/立即执行函数的写法/">
       </div>
     
   </div>
@@ -540,7 +543,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#step1"><span class="nav-number">1.</span> <span class="nav-text">step1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step2"><span class="nav-number">2.</span> <span class="nav-text">step2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step3"><span class="nav-number">3.</span> <span class="nav-text">step3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CR-与-LF-区别："><span class="nav-number">3.1.</span> <span class="nav-text">CR 与 LF 区别：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step4"><span class="nav-number">4.</span> <span class="nav-text">step4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step5"><span class="nav-number">5.</span> <span class="nav-text">step5</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#立即执行函数"><span class="nav-number">1.</span> <span class="nav-text">立即执行函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数声明"><span class="nav-number">2.</span> <span class="nav-text">函数声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数表达式"><span class="nav-number">3.</span> <span class="nav-text">函数表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匿名函数"><span class="nav-number">4.</span> <span class="nav-text">匿名函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">5.</span> <span class="nav-text">实例</span></a></li></ol></div>
             
           </div>
         </section>
