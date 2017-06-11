@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://yhhwpp.github.io/2017/06/11/npm-%E4%B8%8E-Yarn-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%AF%B9%E6%AF%94/</loc>
+    <lastmod>2017-06-11T11:00:33.373Z</lastmod>
+    <data>
+        <display>
+        <title>npm 与 Yarn 常用命令对比</title>
+        <pubTime>2017-06-11T10:57:10.000Z</pubTime>
+        
+        <tag>Yarn</tag>
+         
+        <tag>npm</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://yhhwpp.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yhhwpp.github.io/2016/12/17/%E6%9C%80%E8%BF%91%E4%B8%80%E6%AE%B5%E9%9D%A2%E8%AF%95%E7%9A%84%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2017-04-22T08:02:17.000Z</lastmod>
     <data>
@@ -223,9 +245,9 @@
         <title>理解闭包</title>
         <pubTime>2016-11-22T05:09:46.000Z</pubTime>
         
-        <tag>作用域</tag>
-         
         <tag>闭包</tag>
+         
+        <tag>作用域</tag>
          
          
            
