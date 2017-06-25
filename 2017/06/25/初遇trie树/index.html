@@ -1,0 +1,799 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="jFWjtEakZJUPXsFfXt4HJUkDJGw_QajNz-onR1kyqDg" />
+
+
+
+
+  <meta name="baidu-site-verification" content="yIAKKo5AlH" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="trie树," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="今天用Ant-Design的Cascader组件的时候，数据格式为123456789101112131415161718192021222324var data = [&amp;#123;    &quot;value&quot;: &quot;浙江&quot;,    &quot;children&quot;: [&amp;#123;        &quot;value&quot;: &quot;杭州&quot;,        &quot;children&quot;: [&amp;#123;            &quot;value&quot;:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初遇trie树">
+<meta property="og:url" content="https://yhhwpp.github.io/2017/06/25/初遇trie树/index.html">
+<meta property="og:site_name" content="yhhwpp的博客">
+<meta property="og:description" content="今天用Ant-Design的Cascader组件的时候，数据格式为123456789101112131415161718192021222324var data = [&amp;#123;    &quot;value&quot;: &quot;浙江&quot;,    &quot;children&quot;: [&amp;#123;        &quot;value&quot;: &quot;杭州&quot;,        &quot;children&quot;: [&amp;#123;            &quot;value&quot;:">
+<meta property="og:updated_time" content="2017-06-25T10:18:27.719Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初遇trie树">
+<meta name="twitter:description" content="今天用Ant-Design的Cascader组件的时候，数据格式为123456789101112131415161718192021222324var data = [&amp;#123;    &quot;value&quot;: &quot;浙江&quot;,    &quot;children&quot;: [&amp;#123;        &quot;value&quot;: &quot;杭州&quot;,        &quot;children&quot;: [&amp;#123;            &quot;value&quot;:">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6256238978131822000',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://yhhwpp.github.io/2017/06/25/初遇trie树/"/>
+
+
+  <title> 初遇trie树 | yhhwpp的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">yhhwpp的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user-secret"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                初遇trie树
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-25T18:15:44+08:00" content="2017-06-25">
+              2017-06-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/06/25/初遇trie树/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/06/25/初遇trie树/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/06/25/初遇trie树/" class="leancloud_visitors" data-flag-title="初遇trie树">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>今天用Ant-Design的Cascader组件的时候，数据格式为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = [&#123;</div><div class="line">    <span class="string">"value"</span>: <span class="string">"浙江"</span>,</div><div class="line">    <span class="string">"children"</span>: [&#123;</div><div class="line">        <span class="string">"value"</span>: <span class="string">"杭州"</span>,</div><div class="line">        <span class="string">"children"</span>: [&#123;</div><div class="line">            <span class="string">"value"</span>: <span class="string">"西湖"</span></div><div class="line">        &#125;]</div><div class="line">    &#125;]</div><div class="line">&#125;, &#123;</div><div class="line">    <span class="string">"value"</span>: <span class="string">"四川"</span>,</div><div class="line">    <span class="string">"children"</span>: [&#123;</div><div class="line">        <span class="string">"value"</span>: <span class="string">"成都"</span>,</div><div class="line">        <span class="string">"children"</span>: [&#123;</div><div class="line">            <span class="string">"value"</span>: <span class="string">"锦里"</span></div><div class="line">        &#125;, &#123;</div><div class="line">            <span class="string">"value"</span>: <span class="string">"方所"</span></div><div class="line">        &#125;]</div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="string">"value"</span>: <span class="string">"阿坝"</span>,</div><div class="line">        <span class="string">"children"</span>: [&#123;</div><div class="line">            <span class="string">"value"</span>: <span class="string">"九寨沟"</span></div><div class="line">        &#125;]</div><div class="line">    &#125;]</div><div class="line">&#125;]</div></pre></td></tr></table></figure></p>
+<p>燃鹅，后端返回的数据是这个鸟样子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = [&#123;</div><div class="line">    <span class="string">"province"</span>: <span class="string">"浙江"</span>,</div><div class="line">    <span class="string">"city"</span>: <span class="string">"杭州"</span>,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"西湖"</span></div><div class="line">&#125;, &#123;</div><div class="line">    <span class="string">"province"</span>: <span class="string">"四川"</span>,</div><div class="line">    <span class="string">"city"</span>: <span class="string">"成都"</span>,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"锦里"</span></div><div class="line">&#125;, &#123;</div><div class="line">    <span class="string">"province"</span>: <span class="string">"四川"</span>,</div><div class="line">    <span class="string">"city"</span>: <span class="string">"成都"</span>,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"方所"</span></div><div class="line">&#125;, &#123;</div><div class="line">    <span class="string">"province"</span>: <span class="string">"四川"</span>,</div><div class="line">    <span class="string">"city"</span>: <span class="string">"阿坝"</span>,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"九寨沟"</span></div><div class="line">&#125;]</div></pre></td></tr></table></figure></p>
+<p>想想实现也不难。就写个类似数据去重的方式实现(有密集恐惧者的请绕过)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 将一个没有层级的扁平对象,转换为树形结构(&#123;value, children&#125;)结构的对象</div><div class="line"> * @param &#123;array&#125; tableData - 一个由对象构成的数组,里面的对象都是扁平的</div><div class="line"> * @param &#123;array&#125; route - 一个由字符串构成的数组,字符串为前一数组中对象的key,最终</div><div class="line"> * 输出的对象层级顺序为keys中字符串key的顺序</div><div class="line"> * @return &#123;array&#125; 保存具有树形结构的对象</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">var</span> transObject = <span class="function"><span class="keyword">function</span> (<span class="params">tableData, keys</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> hashTable = &#123;&#125;,</div><div class="line">        res = []</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; tableData.length; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (!hashTable[tableData[i][keys[<span class="number">0</span>]]]) &#123;</div><div class="line">            <span class="keyword">let</span> len = res.push(&#123;</div><div class="line">                <span class="attr">value</span>: tableData[i][keys[<span class="number">0</span>]],</div><div class="line">                <span class="attr">children</span>: []</div><div class="line">            &#125;)</div><div class="line">            <span class="comment">// 在这里要保存key对应的数组序号,不然还要涉及到查找</span></div><div class="line">            hashTable[tableData[i][keys[<span class="number">0</span>]]] = &#123;</div><div class="line">                <span class="attr">$$pos</span>: len - <span class="number">1</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (!hashTable[tableData[i][keys[<span class="number">0</span>]]][tableData[i][keys[<span class="number">1</span>]]]) &#123;</div><div class="line">            <span class="keyword">let</span> len = res[hashTable[tableData[i][keys[<span class="number">0</span>]]].$$pos].children.push(&#123;</div><div class="line">                <span class="attr">value</span>: tableData[i][keys[<span class="number">1</span>]],</div><div class="line">                <span class="attr">children</span>: []</div><div class="line">            &#125;)</div><div class="line">            hashTable[tableData[i][keys[<span class="number">0</span>]]][tableData[i][keys[<span class="number">1</span>]]] = &#123;</div><div class="line">                <span class="attr">$$pos</span>: len - <span class="number">1</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        res[hashTable[tableData[i][keys[<span class="number">0</span>]]].$$pos].children[hashTable[tableData[i][keys[<span class="number">0</span>]]][tableData[i][keys[<span class="number">1</span>]]].$$pos].children.push(&#123;</div><div class="line">            <span class="attr">value</span>: tableData[i][keys[<span class="number">2</span>]]</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> res</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> data = [&#123;</div><div class="line">    <span class="string">"province"</span>: <span class="string">"浙江"</span>,</div><div class="line">    <span class="string">"city"</span>: <span class="string">"杭州"</span>,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"西湖"</span></div><div class="line">&#125;, &#123;</div><div class="line">    <span class="string">"province"</span>: <span class="string">"四川"</span>,</div><div class="line">    <span class="string">"city"</span>: <span class="string">"成都"</span>,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"锦里"</span></div><div class="line">&#125;, &#123;</div><div class="line">    <span class="string">"province"</span>: <span class="string">"四川"</span>,</div><div class="line">    <span class="string">"city"</span>: <span class="string">"成都"</span>,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"方所"</span></div><div class="line">&#125;, &#123;</div><div class="line">    <span class="string">"province"</span>: <span class="string">"四川"</span>,</div><div class="line">    <span class="string">"city"</span>: <span class="string">"阿坝"</span>,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"九寨沟"</span></div><div class="line">&#125;]</div><div class="line"></div><div class="line"><span class="keyword">var</span> keys = [<span class="string">'province'</span>, <span class="string">'city'</span>, <span class="string">'name'</span>]</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(transObject(data, keys))</div></pre></td></tr></table></figure></p>
+<p>虽然代码写的不忍直视，但毕竟是实现了功能，后来有一天，产品让改成四级的。瞬间懵逼。<br>求助之，后端让我用<code>trie树</code> 实现。</p>
+<p><code>trie树</code>貌似大学学数据结构的时候学过，完全忘记了，一番google之，又重新里两外一个版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">    let hashTable = &#123;&#125;, // 定义trie数结</div><div class="line">        res = []; //最终返回的数据</div><div class="line">    for (let i = 0; i &lt; tableData.length; i++) &#123;</div><div class="line">        let arr = res,</div><div class="line">            cur = hashTable; // 临时保存</div><div class="line">        for (let j = 0; j &lt; keys.length; j++) &#123;</div><div class="line">            // 循环层级</div><div class="line">            let key = keys[j],</div><div class="line">                filed = tableData[i][key];</div><div class="line">            if (!cur[filed]) &#123;</div><div class="line">                // 如果节点没有则插入</div><div class="line">                let pusher = &#123;value: filed&#125;, tmp; // 临时保存pusher的children</div><div class="line">                if (j !== keys.length - 1) &#123;</div><div class="line">                    tmp = [];</div><div class="line">                    pusher.children = tmp;</div><div class="line">                &#125;</div><div class="line">                cur[filed] = &#123; $$pos: arr.push(pusher) - 1 &#125;; //</div><div class="line">                cur = cur[filed];</div><div class="line">                arr = tmp;</div><div class="line">            &#125; else &#123; // 继续遍历</div><div class="line">                cur = cur[filed];</div><div class="line">                arr = arr[cur.$$pos].children;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    console.log(res, hashTable);</div><div class="line">    return res;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var data = [</div><div class="line">    &#123;</div><div class="line">        province: &apos;浙江&apos;,</div><div class="line">        city: &apos;杭州&apos;,</div><div class="line">        name: &apos;西湖&apos;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        province: &apos;四川&apos;,</div><div class="line">        city: &apos;成都&apos;,</div><div class="line">        name: &apos;锦里&apos;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        province: &apos;四川&apos;,</div><div class="line">        city: &apos;成都&apos;,</div><div class="line">        name: &apos;方所&apos;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        province: &apos;四川&apos;,</div><div class="line">        city: &apos;阿坝&apos;,</div><div class="line">        name: &apos;九寨沟&apos;</div><div class="line">    &#125;</div><div class="line">];</div><div class="line"></div><div class="line">var keys = [&apos;province&apos;, &apos;city&apos;, &apos;name&apos;];</div><div class="line"></div><div class="line">console.log(transObject(data, keys));</div></pre></td></tr></table></figure>
+<p>这代码清爽多了，本质还是利用javascript的引用类型，实现类似于指针的功能。<br>看来有时间得看看常用的算法了…</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/trie树/" rel="tag">#trie树</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/19/两种前端路由的实现方式/" rel="next" title="两种前端路由的实现方式">
+                <i class="fa fa-chevron-left"></i> 两种前端路由的实现方式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars2.githubusercontent.com/u/7929656?v=3&s=466"
+               alt="hehe" />
+          <p class="site-author-name" itemprop="name">hehe</p>
+          <p class="site-description motion-element" itemprop="description">顺势而为，随遇而安</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yhhwpp" target="_blank" rel="external nofollow" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2368863653" target="_blank" rel="external nofollow" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hehe</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'yhhwpp';
+      var disqus_identifier = '2017/06/25/初遇trie树/';
+      var disqus_title = "初遇trie树";
+      var disqus_url = 'https://yhhwpp.github.io/2017/06/25/初遇trie树/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ac3MO4CWwkQm4gkYUEucAIbT-gzGzoHsz", "Gj2Ffa2tADTtXIHAlPEcGPjA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
