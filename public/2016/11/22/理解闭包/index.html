@@ -88,33 +88,19 @@
 
 
 
-<meta name="description" content="MDN的解释：
-
-闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。
-
-创建闭包的通常方式，是在一个函数内部创建另一个函数。由于作用域链的结构，外围函数是无法访问内部变量的，为了能够访问内部变量，我们就可以使用闭包，闭包的本质还是函数。
-理解闭包，必须弄清执行环境，作用域这些概念，上篇文章有总结。例：123">
+<meta name="description" content="MDN的解释：  闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。  创建闭包的通常方式，是在一个函数内部创建另一个函数。由于作用域链的结构，外围函数是无法访问内部变量的，为了能够访问内部变量，我们就可以使用闭包，闭包的本质还是函数。 理解闭包，必须弄清执行环境，作用域这些概念，上篇文章有总结。例：123">
+<meta name="keywords" content="作用域,闭包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解闭包">
 <meta property="og:url" content="https://yhhwpp.github.io/2016/11/22/理解闭包/index.html">
 <meta property="og:site_name" content="yhhwpp的博客">
-<meta property="og:description" content="MDN的解释：
-
-闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。
-
-创建闭包的通常方式，是在一个函数内部创建另一个函数。由于作用域链的结构，外围函数是无法访问内部变量的，为了能够访问内部变量，我们就可以使用闭包，闭包的本质还是函数。
-理解闭包，必须弄清执行环境，作用域这些概念，上篇文章有总结。例：123">
+<meta property="og:description" content="MDN的解释：  闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。  创建闭包的通常方式，是在一个函数内部创建另一个函数。由于作用域链的结构，外围函数是无法访问内部变量的，为了能够访问内部变量，我们就可以使用闭包，闭包的本质还是函数。 理解闭包，必须弄清执行环境，作用域这些概念，上篇文章有总结。例：123">
 <meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/1406241508-581b4feb715e3_articlex.png">
 <meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/2015120411242959.gif">
 <meta property="og:updated_time" content="2016-12-20T14:05:03.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解闭包">
-<meta name="twitter:description" content="MDN的解释：
-
-闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。
-
-创建闭包的通常方式，是在一个函数内部创建另一个函数。由于作用域链的结构，外围函数是无法访问内部变量的，为了能够访问内部变量，我们就可以使用闭包，闭包的本质还是函数。
-理解闭包，必须弄清执行环境，作用域这些概念，上篇文章有总结。例：123">
+<meta name="twitter:description" content="MDN的解释：  闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。  创建闭包的通常方式，是在一个函数内部创建另一个函数。由于作用域链的结构，外围函数是无法访问内部变量的，为了能够访问内部变量，我们就可以使用闭包，闭包的本质还是函数。 理解闭包，必须弄清执行环境，作用域这些概念，上篇文章有总结。例：123">
 <meta name="twitter:image" content="http://ofstpx613.bkt.clouddn.com/1406241508-581b4feb715e3_articlex.png">
 
 

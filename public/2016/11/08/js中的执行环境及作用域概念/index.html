@@ -88,21 +88,19 @@
 
 
 
-<meta name="description" content="执行环境（excution context，为简单起见，有时称为“环境”）是JavaScript中最为重要的一个概念。执行环境定义变量或函数有权访问的其他数据，决定了他们的各自行为。每个执行环境都有一个与之关联的变量对象(variable object)，环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。
-全局执行环境是最外围的一">
+<meta name="description" content="执行环境（excution context，为简单起见，有时称为“环境”）是JavaScript中最为重要的一个概念。执行环境定义变量或函数有权访问的其他数据，决定了他们的各自行为。每个执行环境都有一个与之关联的变量对象(variable object)，环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。 全局执行环境是最外围的一">
+<meta name="keywords" content="作用域,执行环境">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js中的执行环境及作用域概念">
 <meta property="og:url" content="https://yhhwpp.github.io/2016/11/08/js中的执行环境及作用域概念/index.html">
 <meta property="og:site_name" content="yhhwpp的博客">
-<meta property="og:description" content="执行环境（excution context，为简单起见，有时称为“环境”）是JavaScript中最为重要的一个概念。执行环境定义变量或函数有权访问的其他数据，决定了他们的各自行为。每个执行环境都有一个与之关联的变量对象(variable object)，环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。
-全局执行环境是最外围的一">
+<meta property="og:description" content="执行环境（excution context，为简单起见，有时称为“环境”）是JavaScript中最为重要的一个概念。执行环境定义变量或函数有权访问的其他数据，决定了他们的各自行为。每个执行环境都有一个与之关联的变量对象(variable object)，环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。 全局执行环境是最外围的一">
 <meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/1303280403-581b2f4df3d04_articlex.png">
 <meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/tumblr_oc7w5t9Sqj1rs8pywo1_r1_500.gif">
 <meta property="og:updated_time" content="2016-12-20T14:10:38.484Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js中的执行环境及作用域概念">
-<meta name="twitter:description" content="执行环境（excution context，为简单起见，有时称为“环境”）是JavaScript中最为重要的一个概念。执行环境定义变量或函数有权访问的其他数据，决定了他们的各自行为。每个执行环境都有一个与之关联的变量对象(variable object)，环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。
-全局执行环境是最外围的一">
+<meta name="twitter:description" content="执行环境（excution context，为简单起见，有时称为“环境”）是JavaScript中最为重要的一个概念。执行环境定义变量或函数有权访问的其他数据，决定了他们的各自行为。每个执行环境都有一个与之关联的变量对象(variable object)，环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。 全局执行环境是最外围的一">
 <meta name="twitter:image" content="http://ofstpx613.bkt.clouddn.com/1303280403-581b2f4df3d04_articlex.png">
 
 
