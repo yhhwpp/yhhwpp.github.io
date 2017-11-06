@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="移动端,H5,viewport,device-width," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言进入新公司一周多时间，主要负责hybrid app的开发，写一些H5的web页面。之前一直搞PC端页面，对移动端页面了解甚少。通过这几天的学习与google。对目前的移动端开发事项加以总结。 一些基本概念进入主题之前，首先要理清一些基本概念。像素，分辨率，屏幕尺寸。 屏幕尺寸平常所说的手机的尺寸，比如5.5英寸iPhone6s(1英寸=2.54厘米)，这里的屏幕尺寸是指的屏幕对角线的绝对长度。">
+<meta name="keywords" content="移动端,H5,viewport,device-width">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端viewport，device-width的理解 - H5开发总结（一）">
+<meta property="og:url" content="https://yhhwpp.github.io/2016/12/28/移动端viewport，device-width的理解-H5开发总结（一）/index.html">
+<meta property="og:site_name" content="yhhwpp的博客">
+<meta property="og:description" content="前言进入新公司一周多时间，主要负责hybrid app的开发，写一些H5的web页面。之前一直搞PC端页面，对移动端页面了解甚少。通过这几天的学习与google。对目前的移动端开发事项加以总结。 一些基本概念进入主题之前，首先要理清一些基本概念。像素，分辨率，屏幕尺寸。 屏幕尺寸平常所说的手机的尺寸，比如5.5英寸iPhone6s(1英寸=2.54厘米)，这里的屏幕尺寸是指的屏幕对角线的绝对长度。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ohwhjizw4.bkt.clouddn.com/kick_push_dribbble.gif">
+<meta property="og:updated_time" content="2017-11-06T11:22:23.991Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端viewport，device-width的理解 - H5开发总结（一）">
+<meta name="twitter:description" content="前言进入新公司一周多时间，主要负责hybrid app的开发，写一些H5的web页面。之前一直搞PC端页面，对移动端页面了解甚少。通过这几天的学习与google。对目前的移动端开发事项加以总结。 一些基本概念进入主题之前，首先要理清一些基本概念。像素，分辨率，屏幕尺寸。 屏幕尺寸平常所说的手机的尺寸，比如5.5英寸iPhone6s(1英寸=2.54厘米)，这里的屏幕尺寸是指的屏幕对角线的绝对长度。">
+<meta name="twitter:image" content="http://ohwhjizw4.bkt.clouddn.com/kick_push_dribbble.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yhhwpp.github.io/2016/12/28/移动端viewport，device-width的理解-H5开发总结（一）/"/>
+
+
+
+
+
+  <title>移动端viewport，device-width的理解 - H5开发总结（一） | yhhwpp的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">yhhwpp的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2016/12/28/移动端viewport，device-width的理解-H5开发总结（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hehe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/7929656?v=3&s=466">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yhhwpp的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">移动端viewport，device-width的理解 - H5开发总结（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-28T20:44:06+08:00">
+                2016-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>进入新公司一周多时间，主要负责hybrid app的开发，写一些H5的web页面。之前一直搞PC端页面，对移动端页面了解甚少。通过这几天的学习与google。对目前的移动端开发事项加以总结。</p>
+<h2 id="一些基本概念"><a href="#一些基本概念" class="headerlink" title="一些基本概念"></a>一些基本概念</h2><p>进入主题之前，首先要理清一些基本概念。像素，分辨率，屏幕尺寸。</p>
+<h3 id="屏幕尺寸"><a href="#屏幕尺寸" class="headerlink" title="屏幕尺寸"></a>屏幕尺寸</h3><p>平常所说的手机的尺寸，比如5.5英寸iPhone6s(1英寸=2.54厘米)，这里的屏幕尺寸是指的屏幕对角线的绝对长度。</p>
+<h3 id="像素"><a href="#像素" class="headerlink" title="像素"></a>像素</h3><p>像素单位是px(pixel)，表示的是成像的基本单元。前端一般会遇到css pixels与device pixels两种像素概念。</p>
+<ul>
+<li>CSS pixels : css像素，是浏览器使用的抽象单位，为web开发者创造的。就是我们平常在css写的样式，如（width:200px）。</li>
+<li>device pixels：设备屏幕的物理像素。</li>
+</ul>
+<p>css像素与设备像素没有关系。也就是说1个CSS像素占多少个物理像素是不确定的。这个问题通过页面的放缩比较容易理解。比如一个页面，有一个css像素为300px的div；如果我们放大页面，这个元素会占据更多的设备像素（即device pixels），但它的CSS pixels不变，依然是300px；缩小页面也是同样的道理。所以，元素占据了多少device pixels，是由当前页面的放缩比例（scale）而定的。</p>
+<h2 id="分辨率"><a href="#分辨率" class="headerlink" title="分辨率"></a>分辨率</h2><p>分辨率表示的是单位长度包含的像素数，分辨率的基本单位是像素，准确的说应该是每英寸像素（密度）。这个跟我们关系不大，暂且不讨论。</p>
+<h1 id="DevicePixelRadio（设备像素比）"><a href="#DevicePixelRadio（设备像素比）" class="headerlink" title="DevicePixelRadio（设备像素比）"></a>DevicePixelRadio（设备像素比）</h1><p>DevicePixelRadio 是设备的物理像素和设备独立像素（device-independent pixels，即dips）的比例。公式表示就是：window.devicePixelRatio = 物理像素/dips（有个前提是缩放比例为1）。</p>
+<p>下面进入今天的正题。</p>
+<p>搞移动端开发的前端都知道我们经常在头部加上这样一行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<p>这个<code>viewport</code>神马鬼，<code>device-width</code>又是神马鬼呢。不要懵逼，待我慢慢道来…</p>
+<h3 id="Viewport"><a href="#Viewport" class="headerlink" title="Viewport"></a>Viewport</h3><p>Viewport，是关于设备窗口表示，分为visual viewport 和  layout viewport。</p>
+<ul>
+<li>visual viewport ：即视觉窗口，可以理解为设备自己的宽度内的区域窗口，对应的是device pixels。</li>
+<li>layout viewport： 虚拟视觉窗口。为了解决移动端正常显示而产生的。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;</div></pre></td></tr></table></figure>
+<p>这句话的意思将视图窗口（visual viewport）的宽度设为虚拟视图的宽度。</p>
+<p>例如：iPhone 4的分辨率为640px * 1136px,设备宽度却只有为320px，DevicePixelRadio（设备像素比）为2<br>width 表示设备宽度（320px），device-width表示虚拟视图的宽度（640px）。上面的意思是告诉浏览器将视觉窗口的宽度设为虚拟视图的宽度。这样宽度只有320px的屏幕能正常显示宽度640px的页面内容了。</p>
+<p>一般的常用的meta标签实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no&quot;&gt;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>init-scale：设置页面的初始缩放程度</li>
+<li>maximum-scale：设置了页面最大缩放程度</li>
+<li>minimum-scale：设置了页面最小缩放程度</li>
+<li>user-scalable：是否允许用户对页面进行缩放操作</li>
+</ul>
+<p>上面的意思是设备视图宽度设为虚拟视图的宽度，页面的初始缩放比例以及最大缩放比例都为1，且不允许用户对页面进行缩放操作。</p>
+<hr>
+<center><img src="http://ohwhjizw4.bkt.clouddn.com/kick_push_dribbble.gif" width="400"></center>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/移动端/" rel="tag"># 移动端</a>
+          
+            <a href="/tags/H5/" rel="tag"># H5</a>
+          
+            <a href="/tags/viewport/" rel="tag"># viewport</a>
+          
+            <a href="/tags/device-width/" rel="tag"># device-width</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/20/前端读书清单（长期更新）/" rel="next" title="前端读书以及源码研究清单（长期更新）">
+                <i class="fa fa-chevron-left"></i> 前端读书以及源码研究清单（长期更新）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/18/我的Atom插件集合（长期更新）/" rel="prev" title="我的Atom插件集合（长期更新）">
+                我的Atom插件集合（长期更新） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars2.githubusercontent.com/u/7929656?v=3&s=466"
+                alt="hehe" />
+            
+              <p class="site-author-name" itemprop="name">hehe</p>
+              <p class="site-description motion-element" itemprop="description">顺势而为，随遇而安</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些基本概念"><span class="nav-number">2.</span> <span class="nav-text">一些基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#屏幕尺寸"><span class="nav-number">2.1.</span> <span class="nav-text">屏幕尺寸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#像素"><span class="nav-number">2.2.</span> <span class="nav-text">像素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分辨率"><span class="nav-number">3.</span> <span class="nav-text">分辨率</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DevicePixelRadio（设备像素比）"><span class="nav-number"></span> <span class="nav-text">DevicePixelRadio（设备像素比）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Viewport"><span class="nav-number">0.1.</span> <span class="nav-text">Viewport</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hehe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
