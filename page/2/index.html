@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2016/11/22/理解闭包/">
+    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2017/01/18/我的Atom插件集合（长期更新）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hehe">
@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/11/22/理解闭包/" itemprop="url">理解闭包</a></h1>
+                <a class="post-title-link" href="/2017/01/18/我的Atom插件集合（长期更新）/" itemprop="url">我的Atom插件集合（长期更新）</a></h1>
         
 
         <div class="post-meta">
@@ -263,8 +263,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-22T13:09:46+08:00">
-                2016-11-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-18T20:55:47+08:00">
+                2017-01-18
               </time>
             
 
@@ -286,8 +286,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
 
@@ -325,25 +325,23 @@
       
         
           
-            <p>MDN的解释：</p>
-<blockquote>
-<p>闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。</p>
-</blockquote>
-<p>创建闭包的通常方式，是在一个函数内部创建另一个函数。<br>由于作用域链的结构，外围函数是无法访问内部变量的，为了能够访问内部变量，我们就可以使用闭包，闭包的本质还是函数。</p>
-<p>理解闭包，必须弄清执行环境，作用域这些概念，上篇文章有总结。<br>例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function A()&#123;</div><div class="line">    var x = 1;</div><div class="line">    return function()&#123;</div><div class="line">        console.log(x);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">var m = A();</div><div class="line">m(); //1</div></pre></td></tr></table></figure></p>
-<h2 id="难点一-判断作用域指向的变量对象是否相同"><a href="#难点一-判断作用域指向的变量对象是否相同" class="headerlink" title="难点一: 判断作用域指向的变量对象是否相同"></a>难点一: 判断作用域指向的变量对象是否相同</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function A()&#123;</div><div class="line">    var x = 1;</div><div class="line">    return function()&#123;</div><div class="line">        x++;</div><div class="line">        console.log(x);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">var m1 = A(); //第一次执行A函数</div><div class="line">m1(); // 2</div><div class="line">m1(); // 3</div><div class="line">var m2 = A(); //第二次执行A函数</div><div class="line">m2();// 2</div><div class="line">m1();// 4</div></pre></td></tr></table></figure>
-<p><img src="http://ofstpx613.bkt.clouddn.com/1406241508-581b4feb715e3_articlex.png" alt="图例"></p>
-<p>每次执行A函数时，都会生成一个A的活动变量和执行环境，执行完毕以后，A的执行环境销毁，但是活动对象由于被闭包函数引用，所以仍然保留，最终剩下两个A的变量对象，因此m1和m2在操作x时，指向的是不同的数据。</p>
-<p>理清了这个过程，下面三个问题就很容易回答了：</p>
-<p>问题1：为什么连续执行m1的时候，x的值在递增?<br>回答：因为m1在引用的活动对象A一直没有释放(想释放的话可以让m1=null)，所以x的值一直递增。</p>
-<p>问题2：定义函数m2的时候，为什么x的值重新从1开始了?<br>回答：因为又一次运行了A函数，生成一个新的A的活动对象，所以m2的作用域链引用的是一个新的x值。</p>
-<p>问题3： m1和m2里面的x为什么是相互独立，各自维持的？<br>回答：因为在定义m1和m2的时候，分别运行了A函数，生成了两个活动对象，所以,m1和m2的作用域链是指向不同的A的活动对象的。</p>
-<h2 id="难点二-判断变量对象中变量的值"><a href="#难点二-判断变量对象中变量的值" class="headerlink" title="难点二: 判断变量对象中变量的值"></a>难点二: 判断变量对象中变量的值</h2><p>下面是常见的列子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function A()&#123;</div><div class="line">    var funs = [];</div><div class="line">    for(var i=0; i&lt;10; i++)&#123;</div><div class="line">       funs[i] = function()&#123;</div><div class="line">           return i;</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line">    return funs;</div><div class="line">&#125;</div><div class="line">var fn = A(); // 定义funs[0]-funs[9]，10个函数</div><div class="line">console.log(fn[0]()); // 10</div><div class="line">console.log(fn[1]()); // 10</div></pre></td></tr></table></figure></p>
-<p>解释：<br>当执行 <code>var funs = A();</code>时，只是定义，而没执行，产生环境变量的是在<code>console.log(funs[0]());</code>此时A的变量对象中i值已经是10，自然返回的都是10。</p>
-<p>解决办法1：用<code>ES6</code> 的 <code>let</code> 代替 <code>var</code>。<br>解决办法2：用立即执行函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function A()&#123;</div><div class="line">    var funs = [];</div><div class="line">    for(var i = 0; i &lt; 10; i++)&#123;</div><div class="line">       funs[i] = function tmp1(n)&#123; // tmp1可忽略不写</div><div class="line">            return function tmp2()&#123; // tmp2可忽略不写</div><div class="line">                return n;</div><div class="line">            &#125;</div><div class="line">       &#125;(i)</div><div class="line">    &#125;</div><div class="line">    return funs;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>tmp1</code>是立即执行函数。<em>定义之后立即执行</em>，即把i的值立即传递给n，然后再返回<code>tmp2</code>,此时执行10次，生成了10个<code>tmp2</code>的活动变量。每个<code>tmp2</code>变量对象保存的就是循环i的值。</p>
-<hr>
-<center><img src="http://ofstpx613.bkt.clouddn.com/2015120411242959.gif" width="400"></center>
+            <p>从<code>Sublime Text</code>转向<code>Atom</code>有三个月的时间，发现<code>Atom</code>的插件比<code>Sublime Text</code>要好使的多。并且有大名鼎鼎的<code>Github</code>开发并开源，果断拥抱之。</p>
+<p>本人依着宁需勿滥的原则，列出我的常用插件列表，仅供参考。</p>
+<h2 id="hyperclick-js-hyperclick"><a href="#hyperclick-js-hyperclick" class="headerlink" title="hyperclick, js-hyperclick"></a>hyperclick, js-hyperclick</h2><p>这个两个插件配合使用，可以实现类似于IDE的<code>Ctrl</code> + <code>click</code>，跳转到变量函数声明或者定义的地方，墙裂推荐！</p>
+<p><img src="http://ohwhjizw4.bkt.clouddn.com/68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f41736141796572732f6a732d6879706572636c69636b2f6d61737465722f73637265656e73686f74732f53656c656374696f6e5f3130372e706e67.png" alt="js-hyperclick"></p>
+<p><a href="https://atom.io/packages/hyperclick" target="_blank" rel="external">hyperclick链接</a></p>
+<p><a href="https://atom.io/packages/js-hyperclick" target="_blank" rel="external">js-hyperclick链接</a></p>
+<h2 id="atom-react"><a href="#atom-react" class="headerlink" title="atom-react"></a>atom-react</h2><p>可针对jsx文件自动缩进，代码提示，代码片段，格式化等快捷键，<code>React</code>开发者必备。<a href="https://github.com/orktes/atom-react" target="_blank" rel="external">链接</a></p>
+<h2 id="atom-beautify"><a href="#atom-beautify" class="headerlink" title="atom-beautify"></a>atom-beautify</h2><p><img src="http://ohwhjizw4.bkt.clouddn.com/%7B09185506-7346-40A1-9394-FADCCDA5F364%7D.bmp" alt="atom-beautify"></p>
+<p>代码美化插件，支持大多数编程语言，前端开发必备。<a href="https://atom.io/packages/atom-beautify" target="_blank" rel="external">链接</a></p>
+<h2 id="emmet"><a href="#emmet" class="headerlink" title="emmet"></a>emmet</h2><p><img src="http://ohwhjizw4.bkt.clouddn.com/%7B4057D27D-BA10-475A-A8E7-4AE6E15F8A92%7D.bmp" alt="Emmet"></p>
+<p>怎能少了大名鼎鼎的<code>emment</code>，快速开发html,css的前端必备。<a href="https://atom.io/packages/emmet" target="_blank" rel="external">链接</a></p>
+<h2 id="highlight-selected"><a href="#highlight-selected" class="headerlink" title="highlight-selected"></a>highlight-selected</h2><p><img src="http://ohwhjizw4.bkt.clouddn.com/687474703a2f2f692e696d6775722e636f6d2f4335466e7a7a512e676966.gif" alt="highlight-selected"></p>
+<p>Atom的选中效果不是很明显，推荐用这个插件，选中时，相同的代码会自动高亮，灰常方便。<a href="https://atom.io/packages/highlight-selected" target="_blank" rel="external">链接</a></p>
+<h2 id="docblockr"><a href="#docblockr" class="headerlink" title="docblockr"></a>docblockr</h2><p><img src="http://ohwhjizw4.bkt.clouddn.com/68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f4e696b68696c4b616c6967652f646f63626c6f636b722f6d61737465722f7265736f75726365732f6c6f6e672d617267732e676966.gif" alt="docblockr"></p>
+<p>快速书写注释的快捷插件。<a href="https://atom.io/packages/docblockr" target="_blank" rel="external">链接</a></p>
+<h2 id="autocomplete-paths"><a href="#autocomplete-paths" class="headerlink" title="autocomplete-paths"></a>autocomplete-paths</h2><p><img src="http://ohwhjizw4.bkt.clouddn.com/687474703a2f2f73312e64697265637475706c6f61642e6e65742f696d616765732f3134303431312f70356b76696665362e676966.gif" alt="autocomplete-paths"></p>
+<p>自动路径提示。写 <code>import</code> 模块的时候，灰常好使。<a href="https://atom.io/packages/autocomplete-paths" target="_blank" rel="external">链接</a></p>
 
           
         
@@ -392,7 +390,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2016/11/08/js中的执行环境及作用域概念/">
+    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2016/12/28/移动端viewport，device-width的理解-H5开发总结（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hehe">
@@ -411,7 +409,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/11/08/js中的执行环境及作用域概念/" itemprop="url">js中的执行环境及作用域概念</a></h1>
+                <a class="post-title-link" href="/2016/12/28/移动端viewport，device-width的理解-H5开发总结（一）/" itemprop="url">移动端viewport，device-width的理解 - H5开发总结（一）</a></h1>
         
 
         <div class="post-meta">
@@ -423,8 +421,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-08T22:24:04+08:00">
-                2016-11-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-28T20:44:06+08:00">
+                2016-12-28
               </time>
             
 
@@ -446,8 +444,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
 
@@ -485,22 +483,202 @@
       
         
           
-            <p>执行环境（excution context，为简单起见，有时称为“<strong>环境</strong>”）是JavaScript中最为重要的一个概念。执行环境定义变量或函数有权访问的其他数据，决定了他们的各自行为。每个执行环境都有一个与之关联的<strong>变量对象</strong>(variable object)，环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。</p>
-<p>全局执行环境是最外围的一个执行环境。根据 ECMAScript 实现所在的宿主环境不同，表示执行环，因境的对象也不一样。在 Web 浏览器中，全局执行环境被认为是 <code>window</code> 对象，因此所有全局变量和函数都是作为 <code>window</code> 对象的属性和方法创建的。某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁(全局执行环境直到应用程序退出，例如关闭网页或浏览器时才会被销毁)。</p>
-<p>每个函数都有自己的<strong>执行环境</strong>。当执行流进入一个函数时，函数的环境就会被推入一个<strong>环境栈</strong>中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。ECMAScript 程序中的执行流正是由这个方便的机制控制着。</p>
-<p>当代码在一个环境中执行时，会创建变量对象的一个<strong>作用域链</strong>(scope chain)。作用域链的用途，是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行的代码所在环境的变量对象。如果这个环境是函数，则将其<strong>活动对象</strong>(activation object)作为变量对象。活动对象在最开始时只包含一个变量，即 <code>arguments</code> 对象(这个对象在全局环境中是不存在的)。作用域链中的下一个变量对象来自包含（外部）环境，而再下一个变量对象则来自下一个包含环境。这样，一直延续到全局执行环境;全局执行环境的变量对象始终都是作用域链中的最后一个对象。</p>
-<p>标识符解析是沿着作用域链一级一级地搜索标识符的过程。搜索过程始终从作用域链的前端开始，然后逐级地向后回溯，直至找到标识符为止(如果找不到标识符，通常会导致错误发生)。</p>
-<p>例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = 2;</div><div class="line">function A()&#123;</div><div class="line">     var a = 1;</div><div class="line">&#125;</div><div class="line">console.log(A());//1</div></pre></td></tr></table></figure></p>
-<p><img src="http://ofstpx613.bkt.clouddn.com/1303280403-581b2f4df3d04_articlex.png" alt="图例"></p>
-<p>过程：</p>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>进入新公司一周多时间，主要负责hybrid app的开发，写一些H5的web页面。之前一直搞PC端页面，对移动端页面了解甚少。通过这几天的学习与google。对目前的移动端开发事项加以总结。</p>
+<h2 id="一些基本概念"><a href="#一些基本概念" class="headerlink" title="一些基本概念"></a>一些基本概念</h2><p>进入主题之前，首先要理清一些基本概念。像素，分辨率，屏幕尺寸。</p>
+<h3 id="屏幕尺寸"><a href="#屏幕尺寸" class="headerlink" title="屏幕尺寸"></a>屏幕尺寸</h3><p>平常所说的手机的尺寸，比如5.5英寸iPhone6s(1英寸=2.54厘米)，这里的屏幕尺寸是指的屏幕对角线的绝对长度。</p>
+<h3 id="像素"><a href="#像素" class="headerlink" title="像素"></a>像素</h3><p>像素单位是px(pixel)，表示的是成像的基本单元。前端一般会遇到css pixels与device pixels两种像素概念。</p>
 <ul>
-<li>创建A函数时，会创建一个预先包含全局变量的作用域，这个作用域被保存在内部的[[Scope]]属性中。</li>
-<li>当调用A函数时，会为函数创建一个执行环境，然后复制函数的[[Scope]]属性的对象构建起执行环境的作用域。此后, A()函数的活动对象被创建, 并被推入到执行环境作用域链的前端。</li>
-<li>函数执行完毕后，局部活动对象就会销毁，内存中仅保存全局作用域（全局执行环境的变量对象）但是闭包列外（详情请看下篇文章）。</li>
+<li>CSS pixels : css像素，是浏览器使用的抽象单位，为web开发者创造的。就是我们平常在css写的样式，如（width:200px）。</li>
+<li>device pixels：设备屏幕的物理像素。</li>
 </ul>
-<p>作用域链本质上是一个指向变量对象的指针列表，它只引用但不实际包含变量对象。</p>
+<p>css像素与设备像素没有关系。也就是说1个CSS像素占多少个物理像素是不确定的。这个问题通过页面的放缩比较容易理解。比如一个页面，有一个css像素为300px的div；如果我们放大页面，这个元素会占据更多的设备像素（即device pixels），但它的CSS pixels不变，依然是300px；缩小页面也是同样的道理。所以，元素占据了多少device pixels，是由当前页面的放缩比例（scale）而定的。</p>
+<h2 id="分辨率"><a href="#分辨率" class="headerlink" title="分辨率"></a>分辨率</h2><p>分辨率表示的是单位长度包含的像素数，分辨率的基本单位是像素，准确的说应该是每英寸像素（密度）。这个跟我们关系不大，暂且不讨论。</p>
+<h1 id="DevicePixelRadio（设备像素比）"><a href="#DevicePixelRadio（设备像素比）" class="headerlink" title="DevicePixelRadio（设备像素比）"></a>DevicePixelRadio（设备像素比）</h1><p>DevicePixelRadio 是设备的物理像素和设备独立像素（device-independent pixels，即dips）的比例。公式表示就是：window.devicePixelRatio = 物理像素/dips（有个前提是缩放比例为1）。</p>
+<p>下面进入今天的正题。</p>
+<p>搞移动端开发的前端都知道我们经常在头部加上这样一行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<p>这个<code>viewport</code>神马鬼，<code>device-width</code>又是神马鬼呢。不要懵逼，待我慢慢道来…</p>
+<h3 id="Viewport"><a href="#Viewport" class="headerlink" title="Viewport"></a>Viewport</h3><p>Viewport，是关于设备窗口表示，分为visual viewport 和  layout viewport。</p>
+<ul>
+<li>visual viewport ：即视觉窗口，可以理解为设备自己的宽度内的区域窗口，对应的是device pixels。</li>
+<li>layout viewport： 虚拟视觉窗口。为了解决移动端正常显示而产生的。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;</div></pre></td></tr></table></figure>
+<p>这句话的意思将视图窗口（visual viewport）的宽度设为虚拟视图的宽度。</p>
+<p>例如：iPhone 4的分辨率为640px * 1136px,设备宽度却只有为320px，DevicePixelRadio（设备像素比）为2<br>width 表示设备宽度（320px），device-width表示虚拟视图的宽度（640px）。上面的意思是告诉浏览器将视觉窗口的宽度设为虚拟视图的宽度。这样宽度只有320px的屏幕能正常显示宽度640px的页面内容了。</p>
+<p>一般的常用的meta标签实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no&quot;&gt;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>init-scale：设置页面的初始缩放程度</li>
+<li>maximum-scale：设置了页面最大缩放程度</li>
+<li>minimum-scale：设置了页面最小缩放程度</li>
+<li>user-scalable：是否允许用户对页面进行缩放操作</li>
+</ul>
+<p>上面的意思是设备视图宽度设为虚拟视图的宽度，页面的初始缩放比例以及最大缩放比例都为1，且不允许用户对页面进行缩放操作。</p>
 <hr>
-<center><img src="http://ofstpx613.bkt.clouddn.com/tumblr_oc7w5t9Sqj1rs8pywo1_r1_500.gif" width="400"></center>
+<center><img src="http://ohwhjizw4.bkt.clouddn.com/kick_push_dribbble.gif" width="400"></center>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2016/12/20/前端读书清单（长期更新）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hehe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/7929656?v=3&s=466">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yhhwpp的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/20/前端读书清单（长期更新）/" itemprop="url">前端读书以及源码研究清单（长期更新）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-20T22:41:12+08:00">
+                2016-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>学习前端很久了，感觉没神马进步，遇到了瓶颈。前几天在贺老师的知乎live中得知，他认为学习前端最有效的的途径是<strong>看书，分析源码</strong>。<br>这里列出读书清单，打算接下来一段时间读。个别书籍已经读过。</p>
+<h2 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h2><ul>
+<li>《javascript面向对象编程指南》 – 准备读</li>
+<li>《javascript高级程序设计》– 读过了一遍，准备第二遍</li>
+<li>《你不知道的javascript》 – 在读</li>
+<li>《js设计模式与开发实践》 – 准备读</li>
+<li>《正则指引》 – 准备读</li>
+<li>《基于MVC的JavaScript Web富应用开发》– 准备读</li>
+<li>《javascript函数式编程》 – 准备读</li>
+<li>《js忍者秘籍》- 准备读</li>
+<li>《css揭秘》 – 感觉css没神马学的，这个待定</li>
+<li>《js语言精粹》 – 已读</li>
+<li>《编写可维护的Javascript》</li>
+</ul>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><ul>
+<li>underscore.js – 之前研究过源码，现在忘了差不多了，准备再敲一遍。</li>
+<li>zepto.js</li>
+<li>backbone.js – 目的创建自己的mvc框架</li>
+<li>jq.validate.js,bootstrap等， – 目的创建自己的UI框架</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>纸上得来终觉浅，绝知此事要躬行。读书自然重要，更要将理论化为实践，加油！！！</p>
+<hr>
+<center><img src="http://ofstpx613.bkt.clouddn.com/2015120411243022.gif" width="400"></center>
+
 
           
         
@@ -549,7 +727,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2016/11/03/理解JS的浅拷贝与深拷贝/">
+    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2016/12/20/立即执行函数的写法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hehe">
@@ -568,7 +746,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/11/03/理解JS的浅拷贝与深拷贝/" itemprop="url">理解JS的浅拷贝与深拷贝</a></h1>
+                <a class="post-title-link" href="/2016/12/20/立即执行函数的写法/" itemprop="url">立即执行函数的写法</a></h1>
         
 
         <div class="post-meta">
@@ -580,8 +758,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-03T20:41:09+08:00">
-                2016-11-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-20T22:14:21+08:00">
+                2016-12-20
               </time>
             
 
@@ -641,14 +819,21 @@
 
       
         
-          <p>JS 中的浅拷贝与深拷贝，只是针对复杂数据类型（<code>Object</code>，<code>Array</code>）的复制问题。浅拷贝与深拷贝都可以实现在已有对象上再生出一份的作用。但是对象的实例是存储在堆内存中然后通过一个引用值去操作对象，由此拷贝的时候就存在两种情况了：拷贝引用和拷贝实例，这也是浅拷贝和深拷贝的区别。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/11/03/理解JS的浅拷贝与深拷贝/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h2 id="立即执行函数"><a href="#立即执行函数" class="headerlink" title="立即执行函数"></a>立即执行函数</h2><p>今天无意中看到下面的立即执行函数的一种写法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">!function()&#123;</div><div class="line">// do something</div><div class="line">&#125;();</div></pre></td></tr></table></figure></p>
+<p>傻傻搞不懂的，google了一番：原因是：<br><strong>“function(){}()”并不是合法的EcmaScript字符串，而“!function(){}()”是</strong>，</p>
+<p>匿名函数附近使用括号或一些一元运算符的之后，就会告诉引擎运算符附近是一个表达式，<br>所以上面是跟<code>(function(){}())</code>的作用是一样的，只是引导JavaScript解析器，指明<code>functiontion(){}()</code>是函数表达式，不是函数声。在后面加括号，并立即执行函数的代码。</p>
+<p>加括号是最安全的做法，因为！、+、-等运算符还会和函数的返回值进行运算，不建议使用这些运算符。<br>常见的立即执行函数有以下两种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(function()&#123;</div><div class="line">  ...</div><div class="line">&#125;)()</div><div class="line"></div><div class="line">(function()&#123;</div><div class="line">  ...</div><div class="line">&#125;())</div></pre></td></tr></table></figure></p>
+<p>要理解立即执行函数，需要先理解一些函数的基本概念。</p>
+<h2 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h2><p>使用function关键字声明一个函数，再指定一个函数名，叫函数声明。主要存在”函数声明提升”。<br>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function funA() &#123;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h2><p>使用function关键字声明一个函数，但未给函数命名（当然可以你可以给个名称，但是没有意义，一般省略），最后将匿名函数赋予一个变量，叫函数表达式，这是最常见的函数表达式语法形式。函数表达式必须要等到引擎执行到它所在行，才上而下一行一行地解析函数表达式。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var funA = function() &#123;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><p>使用function关键字声明一个函数，但未给函数命名，所以叫匿名函数，匿名函数属于函数表达式，匿名函数有很多作用，赋予一个变量则创建函数，赋予一个事件则成为事件处理程序或创建闭包等等。如开头的理解执行函数里的函数。</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">funA();</div><div class="line">function funA()&#123;</div><div class="line">    ...</div><div class="line">&#125;//正常，因为‘提升’了函数声明，函数调用可在函数声明之前</div><div class="line"> </div><div class="line">funA();</div><div class="line">var funA=function()&#123;</div><div class="line">    ...</div><div class="line">&#125;//报错，变量funA还未保存对函数的引用，函数调用必须在函数表达式之后</div><div class="line"></div><div class="line">var funA=function()&#123;</div><div class="line">    ...</div><div class="line">&#125;();//函数表达式后面加括号，当javascript引擎解析到此处时能立即调用函数</div><div class="line"></div><div class="line">function funA()&#123;</div><div class="line">    ...</div><div class="line">&#125;();//报错，因为这里的()是分隔符，里面有内容</div><div class="line">function funA()&#123;</div><div class="line">    ...</div><div class="line">&#125;(1);</div><div class="line">不会报错，相当于先声明了funA，然后再执行括号里的内容，相当于括号前面加个`;`</div><div class="line"></div><div class="line">function()&#123;</div><div class="line">    ...    </div><div class="line">&#125;();//报语法错误，JavaScript无法正常编译。</div></pre></td></tr></table></figure>
+<hr>
+<center><img src="http://ohwhjizw4.bkt.clouddn.com/dog03.gif" style="width: 400px;"></center>
+
+          
         
       
     </div>
@@ -695,7 +880,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2016/11/02/SSH-keys与Deploy-keys的区别/">
+    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2016/12/17/最近一段面试的总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hehe">
@@ -714,7 +899,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/11/02/SSH-keys与Deploy-keys的区别/" itemprop="url">SSH keys与Deploy keys的区别</a></h1>
+                <a class="post-title-link" href="/2016/12/17/最近一段面试的总结/" itemprop="url">最近一段面试的总结</a></h1>
         
 
         <div class="post-meta">
@@ -726,8 +911,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-02T21:13:04+08:00">
-                2016-11-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-17T17:26:39+08:00">
+                2016-12-17
               </time>
             
 
@@ -749,8 +934,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Github/" itemprop="url" rel="index">
-                    <span itemprop="name">Github</span>
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
                   </a>
                 </span>
 
@@ -787,306 +972,94 @@
 
       
         
-          <p>在 <code>Github</code> 上建了多个仓库，本人之前的一贯做法是，把<code>ssh</code>目录下的<code>id_rsa.pub</code>公钥copy至<code>repository</code>的<code>Deploy keys</code>，这样会导致另外一个<code>repository</code>无法增加<code>Deploy keys</code>，会提示<code>Key is already use</code>的错误。正确的做法是将<code>id_rsa.pub</code>添加至账户的<code>SSH keys</code>。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/11/02/SSH-keys与Deploy-keys的区别/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前端时间面了几家公司，陆续收到一些offer，最终选择一家做智能家居的公司，感觉以后物联网更会有发展前途。在新公司上班有一周时间，架构跟业务都基本已熟悉，凑着星期天，对前段时间面试的问题总结。</p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><ul>
+<li>对 DIV， Table 布局的理解</li>
+<li>语义化的HTML理解</li>
+<li>对HTML5的理解</li>
+<li>对doctype的理解</li>
+<li>…</li>
+</ul>
+<p>其他都很简单，我主要说说对doctype的理解，之前熟悉个大概，但是自己感觉没有表达清楚。</p>
+<p><code>&lt;!DOCTYPE&gt;</code>处于<code>&lt;html&gt;</code>标签之前，此标签可告知浏览器文档使用哪种HTML或XHTML规范。<br>该标签可声明三种DTD类型，分别表示严格版本、过渡版本以及基于框架的HTML版本（假如文档中的标记不遵循doctype声明所指定的DTD，这个文档除了不能通过代码校验之外，还有可能无法在浏览器中正确显示。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</div></pre></td></tr></table></figure>
+<p>解析：在上面的声明中，声明了文档的根元素是 html，它在公共标识符被定义为 “-//W3C//DTD XHTML 1.0 Strict//EN” 的 DTD 中进行了定义。浏览器将明白如何寻找匹配此公共标识符的 DTD。如果找不到，浏览器将使用公共标识符后面的 URL 作为寻找 DTD 的位置。</p>
+<ul>
+<li><ul>
+<li>：  表示组织名称未注册。Internet 工程任务组(IETF)和万维网协会(W3C)并非注册的 ISO 组织。+为默认,表示组织名称已注册。</li>
+</ul>
+</li>
+<li>DTD ： 指定公开文本类，即所引用的对象类型。 默认为DTD（document type definition）。</li>
+<li>HTML：指定公开文本描述，即对所引用的公开文本的唯一描述性名称。后面可附带版本号。默认为HTML。</li>
+<li>URL：指定所引用对象的位置。</li>
+<li>Strict：排除所有 W3C 专家希望逐步淘汰的代表性属性和元素。</li>
+</ul>
+<h3 id="三种HTML文档类型"><a href="#三种HTML文档类型" class="headerlink" title="三种HTML文档类型"></a>三种HTML文档类型</h3><p>HTML 4.01 规定了三种文档类型：Strict、Transitional 以及 Frameset</p>
+<ul>
+<li>Strict：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot; http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果需要干净的标记，免于表现层的混乱，用HTML Strict DTD类型。</p>
+<ul>
+<li>Transitional：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot; http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Transitional DTD 可包含 W3C 所期望移入样式表的呈现属性和元素. 如果用户使用了不支持层叠样式表（CSS）的浏览器以至于你不得不使用 HTML 的呈现特性时，用 Transitional DTD 类型</p>
+<ul>
+<li>Frameset：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Frameset//EN&quot; &quot; http://www.w3.org/TR/html4/frameset.dtd&quot;&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Frameset DTD 被用于带有框架的文档。除 frameset 元素取代了 body 元素之外，Frameset DTD 等同于 Transitional DTD</p>
+<h3 id="三种-XML-文档类型："><a href="#三种-XML-文档类型：" class="headerlink" title="三种 XML 文档类型："></a>三种 XML 文档类型：</h3><ul>
+<li>Strict</li>
+<li>Transitional</li>
+<li>Frameset</li>
+</ul>
+<p>XHTML 1就是HTML 4.01的XML化，是一种不向前兼容的格式。</p>
+<p>最新的 HTML5的doctype 不需要对DTD引用。</p>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><ul>
+<li>盒子模型的理解</li>
+<li><code>box-sizing</code>的理解</li>
+<li><code>positon</code>的理解</li>
+<li>如何清除浮动</li>
+<li>选择器的权重</li>
+<li>实现上下作用居中的几种方法</li>
+<li>css的解析顺序，link 引入 与import引入的区别</li>
+<li>…</li>
+</ul>
+<p>我主要说一下最后一个问题。</p>
+<p>css的解析顺序 是从右往左的，这点非常重要，可以主导你写出快速选择的高效的css选择器。<br>link引入的按照顺序同步加载的而@import引入的css需要等待页面加载完成才会加载，是异步的。</p>
+<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><p>js问的问题比较多，我只能回忆一些部分内容</p>
+<ul>
+<li>闭包的理解，及运用的一些问题</li>
+<li>原型链理解</li>
+<li>事件冒泡理解</li>
+<li>函数声明，变量提升一些问题</li>
+<li>正则表达式的运用</li>
+<li>实现深拷贝的功能。有很多方法，最简单的是<code>Object.create()</code>。其他方法参见之前的博客</li>
+<li>用原生js实现Jquery的链式操作。最简单的方式在每个方法里<code>return this</code>，其他的可参照Jquery，underscore的实现方法。</li>
+<li>Cookie， SessionStorage， Localstorage区别及运用</li>
+<li>多种方法实现继承。（红宝书里有详细说明，最经典的实现方式是原型，然后还有组合继承，寄生式继承，寄生组合式继承）</li>
+<li>轮询，长连接，实时通讯的理解</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>SEO了解吗</li>
+<li>img 的 alt 跟 title区别（alt是当图片不存在时的替代文字,爬虫读的属性;title是对图片的描述与进一步说明，也就是鼠标移动上去显示的文字）</li>
+<li>HTTP 的头部了解（我只能说出大概，有时间买呗HTTP的书籍好好研究研究）</li>
+<li>前端如何优化（雅虎36条军规）</li>
+<li>一些状态码了解</li>
+<li>XSS，CSRF了解吗，如何防范</li>
+<li>对前端工程化的了解</li>
+<li>对当前流行的MVVM框架原理了解吗</li>
+<li>算法数据结构熟悉吗</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总之很多面试考察的都是基础，总体面试还不错，关于 HTTP 以及 算法，MVVM的原理，正则等这些问题还要好好学习研究</p>
+<hr>
+<center><img src="http://ohwhjizw4.bkt.clouddn.com/sleeping_beauty.gif" width="400"></center>
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2016/10/31/Git-中-Reset、Revert、Checkout的区别/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hehe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/7929656?v=3&s=466">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yhhwpp的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/31/Git-中-Reset、Revert、Checkout的区别/" itemprop="url">Git 中 Reset、Revert、Checkout的区别</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-31T21:39:40+08:00">
-                2016-10-31
-              </time>
-            
-
-            
-
-            
-          </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><code>git reset</code> 、 <code>git checkout</code> 和 <code>git revert</code> 是Git中常用命令。经常傻傻分不清他们之间的区别。最近工作不忙，抽出时间参考了其他文档，对其总结了下。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/10/31/Git-中-Reset、Revert、Checkout的区别/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2016/10/29/git-intall-step/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hehe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/7929656?v=3&s=466">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yhhwpp的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/29/git-intall-step/" itemprop="url">Git 安装教程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-29T16:40:36+08:00">
-                2016-10-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><code>Git</code> 用了很久了，家里电脑每次重装系统后，<code>Git</code> 都必须重新装，由于本人英语能力有限，每次安装选项不知如何选择，只能每次都要 <code>google</code> 一番，为防止此弱智行为，特此记录。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/10/29/git-intall-step/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1124,7 +1097,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
