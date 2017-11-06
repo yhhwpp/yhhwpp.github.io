@@ -324,28 +324,17 @@
 
       
         
-          
-            <p>MDN的解释：</p>
+          <p>MDN的解释：</p>
 <blockquote>
 <p>闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。</p>
 </blockquote>
-<p>创建闭包的通常方式，是在一个函数内部创建另一个函数。<br>由于作用域链的结构，外围函数是无法访问内部变量的，为了能够访问内部变量，我们就可以使用闭包，闭包的本质还是函数。</p>
-<p>理解闭包，必须弄清执行环境，作用域这些概念，上篇文章有总结。<br>例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function A()&#123;</div><div class="line">    var x = 1;</div><div class="line">    return function()&#123;</div><div class="line">        console.log(x);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">var m = A();</div><div class="line">m(); //1</div></pre></td></tr></table></figure></p>
-<h2 id="难点一-判断作用域指向的变量对象是否相同"><a href="#难点一-判断作用域指向的变量对象是否相同" class="headerlink" title="难点一: 判断作用域指向的变量对象是否相同"></a>难点一: 判断作用域指向的变量对象是否相同</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function A()&#123;</div><div class="line">    var x = 1;</div><div class="line">    return function()&#123;</div><div class="line">        x++;</div><div class="line">        console.log(x);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">var m1 = A(); //第一次执行A函数</div><div class="line">m1(); // 2</div><div class="line">m1(); // 3</div><div class="line">var m2 = A(); //第二次执行A函数</div><div class="line">m2();// 2</div><div class="line">m1();// 4</div></pre></td></tr></table></figure>
-<p><img src="http://ofstpx613.bkt.clouddn.com/1406241508-581b4feb715e3_articlex.png" alt="图例"></p>
-<p>每次执行A函数时，都会生成一个A的活动变量和执行环境，执行完毕以后，A的执行环境销毁，但是活动对象由于被闭包函数引用，所以仍然保留，最终剩下两个A的变量对象，因此m1和m2在操作x时，指向的是不同的数据。</p>
-<p>理清了这个过程，下面三个问题就很容易回答了：</p>
-<p>问题1：为什么连续执行m1的时候，x的值在递增?<br>回答：因为m1在引用的活动对象A一直没有释放(想释放的话可以让m1=null)，所以x的值一直递增。</p>
-<p>问题2：定义函数m2的时候，为什么x的值重新从1开始了?<br>回答：因为又一次运行了A函数，生成一个新的A的活动对象，所以m2的作用域链引用的是一个新的x值。</p>
-<p>问题3： m1和m2里面的x为什么是相互独立，各自维持的？<br>回答：因为在定义m1和m2的时候，分别运行了A函数，生成了两个活动对象，所以,m1和m2的作用域链是指向不同的A的活动对象的。</p>
-<h2 id="难点二-判断变量对象中变量的值"><a href="#难点二-判断变量对象中变量的值" class="headerlink" title="难点二: 判断变量对象中变量的值"></a>难点二: 判断变量对象中变量的值</h2><p>下面是常见的列子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function A()&#123;</div><div class="line">    var funs = [];</div><div class="line">    for(var i=0; i&lt;10; i++)&#123;</div><div class="line">       funs[i] = function()&#123;</div><div class="line">           return i;</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line">    return funs;</div><div class="line">&#125;</div><div class="line">var fn = A(); // 定义funs[0]-funs[9]，10个函数</div><div class="line">console.log(fn[0]()); // 10</div><div class="line">console.log(fn[1]()); // 10</div></pre></td></tr></table></figure></p>
-<p>解释：<br>当执行 <code>var funs = A();</code>时，只是定义，而没执行，产生环境变量的是在<code>console.log(funs[0]());</code>此时A的变量对象中i值已经是10，自然返回的都是10。</p>
-<p>解决办法1：用<code>ES6</code> 的 <code>let</code> 代替 <code>var</code>。<br>解决办法2：用立即执行函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function A()&#123;</div><div class="line">    var funs = [];</div><div class="line">    for(var i = 0; i &lt; 10; i++)&#123;</div><div class="line">       funs[i] = function tmp1(n)&#123; // tmp1可忽略不写</div><div class="line">            return function tmp2()&#123; // tmp2可忽略不写</div><div class="line">                return n;</div><div class="line">            &#125;</div><div class="line">       &#125;(i)</div><div class="line">    &#125;</div><div class="line">    return funs;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>tmp1</code>是立即执行函数。<em>定义之后立即执行</em>，即把i的值立即传递给n，然后再返回<code>tmp2</code>,此时执行10次，生成了10个<code>tmp2</code>的活动变量。每个<code>tmp2</code>变量对象保存的就是循环i的值。</p>
-<hr>
-<center><img src="http://ofstpx613.bkt.clouddn.com/2015120411242959.gif" width="400"></center>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/11/22/理解闭包/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -484,25 +473,14 @@
 
       
         
-          
-            <p>执行环境（excution context，为简单起见，有时称为“<strong>环境</strong>”）是JavaScript中最为重要的一个概念。执行环境定义变量或函数有权访问的其他数据，决定了他们的各自行为。每个执行环境都有一个与之关联的<strong>变量对象</strong>(variable object)，环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。</p>
-<p>全局执行环境是最外围的一个执行环境。根据 ECMAScript 实现所在的宿主环境不同，表示执行环，因境的对象也不一样。在 Web 浏览器中，全局执行环境被认为是 <code>window</code> 对象，因此所有全局变量和函数都是作为 <code>window</code> 对象的属性和方法创建的。某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁(全局执行环境直到应用程序退出，例如关闭网页或浏览器时才会被销毁)。</p>
-<p>每个函数都有自己的<strong>执行环境</strong>。当执行流进入一个函数时，函数的环境就会被推入一个<strong>环境栈</strong>中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。ECMAScript 程序中的执行流正是由这个方便的机制控制着。</p>
-<p>当代码在一个环境中执行时，会创建变量对象的一个<strong>作用域链</strong>(scope chain)。作用域链的用途，是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行的代码所在环境的变量对象。如果这个环境是函数，则将其<strong>活动对象</strong>(activation object)作为变量对象。活动对象在最开始时只包含一个变量，即 <code>arguments</code> 对象(这个对象在全局环境中是不存在的)。作用域链中的下一个变量对象来自包含（外部）环境，而再下一个变量对象则来自下一个包含环境。这样，一直延续到全局执行环境;全局执行环境的变量对象始终都是作用域链中的最后一个对象。</p>
-<p>标识符解析是沿着作用域链一级一级地搜索标识符的过程。搜索过程始终从作用域链的前端开始，然后逐级地向后回溯，直至找到标识符为止(如果找不到标识符，通常会导致错误发生)。</p>
-<p>例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = 2;</div><div class="line">function A()&#123;</div><div class="line">     var a = 1;</div><div class="line">&#125;</div><div class="line">console.log(A());//1</div></pre></td></tr></table></figure></p>
-<p><img src="http://ofstpx613.bkt.clouddn.com/1303280403-581b2f4df3d04_articlex.png" alt="图例"></p>
-<p>过程：</p>
-<ul>
-<li>创建A函数时，会创建一个预先包含全局变量的作用域，这个作用域被保存在内部的[[Scope]]属性中。</li>
-<li>当调用A函数时，会为函数创建一个执行环境，然后复制函数的[[Scope]]属性的对象构建起执行环境的作用域。此后, A()函数的活动对象被创建, 并被推入到执行环境作用域链的前端。</li>
-<li>函数执行完毕后，局部活动对象就会销毁，内存中仅保存全局作用域（全局执行环境的变量对象）但是闭包列外（详情请看下篇文章）。</li>
-</ul>
-<p>作用域链本质上是一个指向变量对象的指针列表，它只引用但不实际包含变量对象。</p>
-<hr>
-<center><img src="http://ofstpx613.bkt.clouddn.com/tumblr_oc7w5t9Sqj1rs8pywo1_r1_500.gif" width="400"></center>
-
-          
+          <p>执行环境（excution context，为简单起见，有时称为“<strong>环境</strong>”）是JavaScript中最为重要的一个概念。执行环境定义变量或函数有权访问的其他数据，决定了他们的各自行为。每个执行环境都有一个与之关联的<strong>变量对象</strong>(variable object)，环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/11/08/js中的执行环境及作用域概念/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
