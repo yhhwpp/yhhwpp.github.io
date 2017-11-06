@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="随着小程序的接口。公司在考虑到快速开发，果断决定开发小程序。总体而言，开发难度比较简单， 与流行的mvvm类似，开发只专注数据层，不关注DOM上手比较快。期间也踩了一些坑，记录了下来。 路由注意事项-navigateTo, redirectTo 只能打开非 tabBar 页面。-switchTab 只能打开 tabBar 页面。-reLaunch 可以打开任意页面。-页面底部的 tabBar 由页">
+<meta name="description" content="随着小程序的接口。公司在考虑到快速开发，果断决定开发小程序。总体而言，开发难度比较简单， 与流行的mvvm类似，开发只专注数据层，不关注DOM上手比较快。期间也踩了一些坑，记录了下来。">
 <meta name="keywords" content="小程序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="小程序开发总结">
 <meta property="og:url" content="https://yhhwpp.github.io/2017/11/06/小程序开发总结/index.html">
 <meta property="og:site_name" content="yhhwpp的博客">
-<meta property="og:description" content="随着小程序的接口。公司在考虑到快速开发，果断决定开发小程序。总体而言，开发难度比较简单， 与流行的mvvm类似，开发只专注数据层，不关注DOM上手比较快。期间也踩了一些坑，记录了下来。 路由注意事项-navigateTo, redirectTo 只能打开非 tabBar 页面。-switchTab 只能打开 tabBar 页面。-reLaunch 可以打开任意页面。-页面底部的 tabBar 由页">
+<meta property="og:description" content="随着小程序的接口。公司在考虑到快速开发，果断决定开发小程序。总体而言，开发难度比较简单， 与流行的mvvm类似，开发只专注数据层，不关注DOM上手比较快。期间也踩了一些坑，记录了下来。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://mp.weixin.qq.com/debug/wxadoc/dev/image/login.png?t=2017727">
 <meta property="og:image" content="https://pay.weixin.qq.com/wiki/doc/api/img/wxa-7-2.jpg">
 <meta property="og:image" content="http://ohwhjizw4.bkt.clouddn.com/nbh-gmfa001-030_compressed_800x600_c">
-<meta property="og:updated_time" content="2017-11-06T13:26:19.050Z">
+<meta property="og:updated_time" content="2017-11-06T13:27:31.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小程序开发总结">
-<meta name="twitter:description" content="随着小程序的接口。公司在考虑到快速开发，果断决定开发小程序。总体而言，开发难度比较简单， 与流行的mvvm类似，开发只专注数据层，不关注DOM上手比较快。期间也踩了一些坑，记录了下来。 路由注意事项-navigateTo, redirectTo 只能打开非 tabBar 页面。-switchTab 只能打开 tabBar 页面。-reLaunch 可以打开任意页面。-页面底部的 tabBar 由页">
+<meta name="twitter:description" content="随着小程序的接口。公司在考虑到快速开发，果断决定开发小程序。总体而言，开发难度比较简单， 与流行的mvvm类似，开发只专注数据层，不关注DOM上手比较快。期间也踩了一些坑，记录了下来。">
 <meta name="twitter:image" content="https://mp.weixin.qq.com/debug/wxadoc/dev/image/login.png?t=2017727">
 
 
@@ -348,6 +348,7 @@
 
       
         <p>随着小程序的接口。公司在考虑到快速开发，果断决定开发小程序。总体而言，开发难度比较简单， 与流行的<code>mvvm</code>类似，开发只专注数据层，不关注<code>DOM</code>上手比较快。期间也踩了一些坑，记录了下来。</p>
+<a id="more"></a>
 <h2 id="路由注意事项"><a href="#路由注意事项" class="headerlink" title="路由注意事项"></a>路由注意事项</h2><p>-<code>navigateTo</code>, <code>redirectTo</code> 只能打开非 <code>tabBar</code> 页面。<br>-<code>switchTab</code> 只能打开 <code>tabBar</code> 页面。<br>-<code>reLaunch</code> 可以打开任意页面。<br>-页面底部的 <code>tabBar</code> 由页面决定，即只要是定义为 <code>tabBar</code> 的页面，底部都有 <code>tabBar</code>。<br>-调用页面路由带的参数可以在目标页面的onLoad中获取。</p>
 <h2 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h2><p>-单位：rpx<br>-建议： 开发微信小程序时设计师可以用 iPhone6 作为视觉稿的标准。 注意： 在较小的屏幕上不可避免的会有一些毛刺，请在开发时尽量避免这种情况。<br>-支持的选择器：id， class，element， element, element， ::after， ::before</p>
 <h2 id="运行机制"><a href="#运行机制" class="headerlink" title="运行机制"></a>运行机制</h2><p>小程序没有重启的概念<br>当小程序进入后台，客户端会维持一段时间的运行状态，超过一定时间后（目前是5分钟）会被微信主动销毁<br>置顶的小程序不会被微信主动销毁<br>当收到系统内存告警也会进行小程序的销毁</p>
