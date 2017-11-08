@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://mp.weixin.qq.com/debug/wxadoc/dev/image/login.png?t=2017727">
 <meta property="og:image" content="https://pay.weixin.qq.com/wiki/doc/api/img/wxa-7-2.jpg">
 <meta property="og:image" content="http://ohwhjizw4.bkt.clouddn.com/boxing_800x600.gif">
-<meta property="og:updated_time" content="2017-11-06T13:30:27.314Z">
+<meta property="og:updated_time" content="2017-11-08T02:53:14.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小程序开发总结">
 <meta name="twitter:description" content="随着小程序的接口。公司在考虑到快速开发，果断决定开发小程序。总体而言，开发难度比较简单， 与流行的mvvm类似，开发只专注数据层，不关注DOM上手比较快。期间也踩了一些坑，记录了下来。">
@@ -349,17 +349,54 @@
       
         <p>随着小程序的接口。公司在考虑到快速开发，果断决定开发小程序。总体而言，开发难度比较简单， 与流行的<code>mvvm</code>类似，开发只专注数据层，不关注<code>DOM</code>上手比较快。期间也踩了一些坑，记录了下来。</p>
 <a id="more"></a>
-<h2 id="路由注意事项"><a href="#路由注意事项" class="headerlink" title="路由注意事项"></a>路由注意事项</h2><p>-<code>navigateTo</code>, <code>redirectTo</code> 只能打开非 <code>tabBar</code> 页面。<br>-<code>switchTab</code> 只能打开 <code>tabBar</code> 页面。<br>-<code>reLaunch</code> 可以打开任意页面。<br>-页面底部的 <code>tabBar</code> 由页面决定，即只要是定义为 <code>tabBar</code> 的页面，底部都有 <code>tabBar</code>。<br>-调用页面路由带的参数可以在目标页面的onLoad中获取。</p>
-<h2 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h2><p>-单位：rpx<br>-建议： 开发微信小程序时设计师可以用 iPhone6 作为视觉稿的标准。 注意： 在较小的屏幕上不可避免的会有一些毛刺，请在开发时尽量避免这种情况。<br>-支持的选择器：id， class，element， element, element， ::after， ::before</p>
+<h2 id="路由注意事项"><a href="#路由注意事项" class="headerlink" title="路由注意事项"></a>路由注意事项</h2><ul>
+<li><code>navigateTo</code>, <code>redirectTo</code> 只能打开非 <code>tabBar</code> 页面。</li>
+<li><code>switchTab</code> 只能打开 <code>tabBar</code> 页面。</li>
+<li><code>reLaunch</code> 可以打开任意页面。</li>
+<li>页面底部的 <code>tabBar</code> 由页面决定，即只要是定义为 <code>tabBar</code> 的页面，底部都有 <code>tabBar</code>。</li>
+<li>调用页面路由带的参数可以在目标页面的onLoad中获取。</li>
+</ul>
+<h2 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h2><ul>
+<li>单位：rpx</li>
+<li>建议： 开发微信小程序时设计师可以用 iPhone6 作为视觉稿的标准。 注意： 在较小的屏幕上不可避免的会有一些毛刺，请在开发时尽量避免这种情况。</li>
+<li>支持的选择器：id， class，element， element, element， ::after， ::before</li>
+</ul>
 <h2 id="运行机制"><a href="#运行机制" class="headerlink" title="运行机制"></a>运行机制</h2><p>小程序没有重启的概念<br>当小程序进入后台，客户端会维持一段时间的运行状态，超过一定时间后（目前是5分钟）会被微信主动销毁<br>置顶的小程序不会被微信主动销毁<br>当收到系统内存告警也会进行小程序的销毁</p>
 <h2 id="代码包限制"><a href="#代码包限制" class="headerlink" title="代码包限制"></a>代码包限制</h2><p>2M大小</p>
 <h2 id="及时清理没有使用到的代码和资源"><a href="#及时清理没有使用到的代码和资源" class="headerlink" title="及时清理没有使用到的代码和资源"></a>及时清理没有使用到的代码和资源</h2><p>目前小程序打包是会将工程下所有文件都打入代码包内，也就是说，这些没有被实际使用到的库文件和资源也会被打入到代码包里，从而影响到整体代码包的大小。</p>
-<h2 id="组件列表"><a href="#组件列表" class="headerlink" title="组件列表"></a>组件列表</h2><h3 id="视图容器"><a href="#视图容器" class="headerlink" title="视图容器"></a>视图容器</h3><p>-view<br>-scroll-view<br>-swiper</p>
-<h3 id="基础内容"><a href="#基础内容" class="headerlink" title="基础内容"></a>基础内容</h3><p>-icon<br>-text<br>-progress</p>
-<h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><p>-button<br>-form<br>–input<br>checkbox<br>-radio<br>-picker<br>picker-view<br>slider<br>switch<br>label</p>
-<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><p>-navigator</p>
-<h2 id="多媒体"><a href="#多媒体" class="headerlink" title="多媒体"></a>多媒体</h2><p>-audio<br>-image<br>-video</p>
-<h2 id="客服"><a href="#客服" class="headerlink" title="客服"></a>客服</h2><p>-contact-button</p>
+<h2 id="组件列表"><a href="#组件列表" class="headerlink" title="组件列表"></a>组件列表</h2><h3 id="视图容器"><a href="#视图容器" class="headerlink" title="视图容器"></a>视图容器</h3><ul>
+<li>view</li>
+<li>scroll-view</li>
+<li>swiper</li>
+</ul>
+<h3 id="基础内容"><a href="#基础内容" class="headerlink" title="基础内容"></a>基础内容</h3><ul>
+<li>icon</li>
+<li>text</li>
+<li>progress</li>
+</ul>
+<h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><ul>
+<li>button</li>
+<li>form</li>
+<li>input</li>
+<li>checkbox</li>
+<li>radio</li>
+<li>picker</li>
+<li>picker-view</li>
+<li>slider</li>
+<li>switch</li>
+<li>label</li>
+</ul>
+<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><ul>
+<li>navigator</li>
+</ul>
+<h2 id="多媒体"><a href="#多媒体" class="headerlink" title="多媒体"></a>多媒体</h2><ul>
+<li>audio</li>
+<li>image</li>
+<li>video</li>
+</ul>
+<h2 id="客服"><a href="#客服" class="headerlink" title="客服"></a>客服</h2><ul>
+<li>contact-button</li>
+</ul>
 <h2 id="code-换取-session-key"><a href="#code-换取-session-key" class="headerlink" title="code 换取 session_key"></a>code 换取 session_key</h2><p>这是一个 HTTPS 接口，开发者服务器使用登录凭证 <code>code</code> 获取 <code>session_key</code> 和 <code>openid</code>。其中 <code>session_key</code> 是对用户数据进行加密签名的密钥。为了自身应用安全，<code>session_key</code> 不应该在网络上传输。</p>
 <h2 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h2><p>调用<code>wx.getUserInfo</code>获取<code>userInfo</code>：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"nickName"</span>: <span class="string">"hehe"</span>,</div><div class="line">  <span class="string">"gender"</span>: <span class="number">1</span>,</div><div class="line">  <span class="string">"language"</span>: <span class="string">"zh_CN"</span>,</div><div class="line">  <span class="string">"city"</span>: <span class="string">"Guangzhou"</span>,</div><div class="line">  <span class="string">"province"</span>: <span class="string">"Shenzhen"</span>,</div><div class="line">  <span class="string">"country"</span>: <span class="string">"CN"</span>,</div><div class="line">  <span class="string">"avatarUrl"</span>: <span class="string">"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLRHCyHSM8EiavGbVY61wSvkmnOsWkWzJxjwgss7Aqa5hDZIougu9X3iauCOY9agh7iamNYRZAG81rxg/0"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
