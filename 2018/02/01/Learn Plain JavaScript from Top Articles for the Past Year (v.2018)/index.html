@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="学习指南," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原文地址  在Medium上看到一篇关于javascript 学写的总结。原文作者研究了近2.4万篇 JavaScript 文章得出这篇总结，全文包含学习指南、新人上手、Webpack、性能、基础概念、函数式编程、面试、教程案例、Async Await、并发、V8、机器学习、数据可视化、调试、单元测试等章节，非常适合用于对自己 JavaScript 技术栈的比对，用于查漏补缺，适合收藏阅读。">
+<meta name="keywords" content="学习指南">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(转)Learn Plain JavaScript from Top Articles for the Past Year (v.2018)">
+<meta property="og:url" content="https://yhhwpp.github.io/2018/02/01/Learn Plain JavaScript from Top Articles for the Past Year (v.2018)/index.html">
+<meta property="og:site_name" content="yuanhehe&#39; blog">
+<meta property="og:description" content="原文地址  在Medium上看到一篇关于javascript 学写的总结。原文作者研究了近2.4万篇 JavaScript 文章得出这篇总结，全文包含学习指南、新人上手、Webpack、性能、基础概念、函数式编程、面试、教程案例、Async Await、并发、V8、机器学习、数据可视化、调试、单元测试等章节，非常适合用于对自己 JavaScript 技术栈的比对，用于查漏补缺，适合收藏阅读。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/Mybridge/learn-javascript/master/background.png">
+<meta property="og:image" content="https://github.com/Mybridge/learn-javascript/raw/master/chart.png">
+<meta property="og:image" content="http://ohwhjizw4.bkt.clouddn.com/ezgif.com-gif-maker.gif">
+<meta property="og:updated_time" content="2018-02-01T03:46:24.870Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="(转)Learn Plain JavaScript from Top Articles for the Past Year (v.2018)">
+<meta name="twitter:description" content="原文地址  在Medium上看到一篇关于javascript 学写的总结。原文作者研究了近2.4万篇 JavaScript 文章得出这篇总结，全文包含学习指南、新人上手、Webpack、性能、基础概念、函数式编程、面试、教程案例、Async Await、并发、V8、机器学习、数据可视化、调试、单元测试等章节，非常适合用于对自己 JavaScript 技术栈的比对，用于查漏补缺，适合收藏阅读。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Mybridge/learn-javascript/master/background.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yhhwpp.github.io/2018/02/01/Learn Plain JavaScript from Top Articles for the Past Year (v.2018)/"/>
+
+
+
+
+
+  <title>(转)Learn Plain JavaScript from Top Articles for the Past Year (v.2018) | yuanhehe' blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">yuanhehe' blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2018/02/01/Learn Plain JavaScript from Top Articles for the Past Year (v.2018)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hehe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/7929656?v=3&s=466">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yuanhehe' blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">(转)Learn Plain JavaScript from Top Articles for the Past Year (v.2018)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T11:23:05+08:00">
+                2018-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/02/01/Learn Plain JavaScript from Top Articles for the Past Year (v.2018)/" class="leancloud_visitors" data-flag-title="(转)Learn Plain JavaScript from Top Articles for the Past Year (v.2018)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><a href="https://medium.mybridge.co/learn-plain-javascript-from-top-tutorials-for-the-past-year-v-2018-d964bc597a45" target="_blank" rel="external">原文地址</a></p>
+</blockquote>
+<p>在<code>Medium</code>上看到一篇关于javascript 学写的总结。原文作者研究了近2.4万篇 JavaScript 文章得出这篇总结，全文包含学习指南、新人上手、Webpack、性能、基础概念、函数式编程、面试、教程案例、Async Await、并发、V8、机器学习、数据可视化、调试、单元测试等章节，非常适合用于对自己 JavaScript 技术栈的比对，用于查漏补缺，适合收藏阅读。<br><a id="more"></a></p>
+<p><img src="https://raw.githubusercontent.com/Mybridge/learn-javascript/master/background.png" width="800" alt="Mybridge"></p>
+<p>Between Jan~Dec 2017, we’ve compared nearly 24,000 JavaScript articles to pick the Top 55.</p>
+<p>We made this directory, believing that reading articles written by experienced programmers is a great way to learn. After learning from a course or two, you may face many challenges in building and shipping an actual app.</p>
+<p>This directory will make it easier for you to find best JavaScript tutorials from last year, where experienced developers share their lessons, insights and mistakes working in JavaScript. </p>
+<p>This directory has 15 key topics as shown below.</p>
+<p><img src="https://github.com/Mybridge/learn-javascript/raw/master/chart.png" width="1400" alt="Mybridge"></p>
+<p>If you want a version with images: <a href="https://goo.gl/jXpP4H" target="_blank" rel="external">Go to our Medium link</a></p>
+<p><br></p>
+<h2 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h2><ol>
+<li><a href="#guide">Guide</a></li>
+<li><a href="#get-started">Get Started</a></li>
+<li><a href="#webpack">Webpack</a></li>
+<li><a href="#performance">Performance</a></li>
+<li><a href="#concept">Concept</a></li>
+<li><a href="#funtional-programming">Funtional Programming</a></li>
+<li><a href="#interview">Interview</a></li>
+<li><a href="#case-study">Case Study</a></li>
+<li><a href="#async-await">Async Await</a></li>
+<li><a href="#concurrency">Concurrency</a></li>
+<li><a href="#v8">V8</a></li>
+<li><a href="#machine-learning">Machine Learning</a></li>
+<li><a href="#data-visualization">Data Visualization</a></li>
+<li><a href="#debugging">Debugging</a></li>
+<li><a href="#unit-testing">Unit Testing</a></li>
+</ol>
+<p><br></p>
+<h3 id="Recommended-Learning"><a href="#Recommended-Learning" class="headerlink" title="Recommended Learning"></a>Recommended Learning</h3><p>A) Beginner: <a href="http://bit.ly/2E3RHNo" target="_blank" rel="external">Modern JavaScript for Beginner: Learn and build projects with pure JavaScript (No frameworks or libraries).</a><br>4,995 recommends, 4.8/5 stars</p>
+<p>B) Advanced: <a href="http://bit.ly/2Gc2mGb" target="_blank" rel="external">Advanced JavaScript: Become a Senior JS developer. Interview questions and practices included.</a><br>10,015 recommends, 4.6/5 stars</p>
+<p><br></p>
+<h3 id="Guide"><a href="#Guide" class="headerlink" title="Guide"></a>Guide</h3><ul>
+<li><a href="https://github.com/mbeaudru/modern-js-cheatsheet?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Modern-js-cheatsheet: Cheatsheet for the JavaScript knowledge you will frequently encounter in modern projects.</a></li>
+<li><a href="https://mgechev.github.io/javascript-algorithms/?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">JavaScript implementations of different famous Computer Science algorithms.</a></li>
+<li><a href="https://github.com/Chalarangelo/30-seconds-of-code?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">30-seconds-of-code: Useful Javascript snippets that you can understand in 30 seconds or less.</a></li>
+<li><a href="https://codetower.github.io/es6-features?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">A simple interactive ES6 Feature list</a></li>
+<li><a href="https://github.com/denysdovhan/wtfjs?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">What the Fu*k JavaScript: A list of funny and tricky JavaScript examples</a></li>
+<li><a href="https://github.com/airbnb/javascript?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Airbnb Javascript Styleguide</a></li>
+<li><a href="http://dmitrysoshnikov.com/ecmascript/javascript-the-core-2nd-edition?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">JavaScript. The Core: 2nd Edition - Dmitry Soshnikov</a><br><br></li>
+</ul>
+<h3 id="Get-Started"><a href="#Get-Started" class="headerlink" title="Get Started"></a>Get Started</h3><ul>
+<li><a href="https://medium.com/@peterxjang/modern-javascript-explained-for-dinosaurs-f695e9747b70?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Modern JavaScript Explained For Dinosaurs</a></li>
+<li><a href="https://trackchanges.postlight.com/modern-javascript-for-ancient-web-developers-58e7cae050f9?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Modern JavaScript for Ancient Web Developers</a></li>
+<li><a href="https://www.youtube.com/watch?v=hO7mzO83N1Q?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">JavaScript Patterns for 2017 - Scott Allen</a></li>
+<li><a href="https://dev.to/srebalaji/es6-for-beginners-with-example-c7?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">ES6 for beginners with example</a></li>
+<li><a href="https://eev.ee/blog/2017/10/07/javascript-got-better-while-i-wasnt-looking?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">JavaScript got better while I wasn’t looking</a></li>
+<li><a href="https://medium.freecodecamp.org/i-just-asked-23-000-developers-what-they-think-of-javascript-heres-what-i-learned-9a06b61998fa?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">I just asked 23,000 developers what they think of JavaScript. Here’s what I learned.</a></li>
+<li><a href="https://hackernoon.com/how-i-rediscovered-my-love-for-javascript-after-throwing-90-of-it-in-the-trash-f1baed075d1b?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">How I rediscovered my love for JavaScript after throwing 90% of it in the trash.</a></li>
+<li><a href="https://www.sitepoint.com/dom-manipulation-vanilla-javascript-no-jquery?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">The Basics of DOM Manipulation in Vanilla JavaScript (No jQuery) — SitePoint</a><br><br></li>
+</ul>
+<h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><ul>
+<li><a href="https://www.smashingmagazine.com/2017/02/a-detailed-introduction-to-webpack?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">A Detailed Introduction To Webpack – Smashing Magazine</a></li>
+<li><a href="https://dev.to/thelarkinn/i-maintain-webpack-ask-me-anything-an8?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">I maintain webpack, ask me anything!</a></li>
+<li><a href="https://medium.com/webpack/webpack-bits-getting-the-most-out-of-the-commonschunkplugin-ab389e5f318?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">webpack bits: Getting the most out of the CommonsChunkPlugin()</a><br><br></li>
+</ul>
+<h3 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h3><ul>
+<li><a href="https://medium.com/dev-channel/the-cost-of-javascript-84009f51e99e?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">The Cost Of JavaScript - Addy Osmani</a></li>
+<li><a href="https://medium.com/@addyosmani/javascript-start-up-performance-69200f43b201?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">JavaScript Start-up Performance - Addy Osmani</a></li>
+<li><a href="https://blog.sessionstack.com/how-javascript-works-memory-management-how-to-handle-4-common-memory-leaks-3f28b94cfbec?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">How JavaScript works: memory management + how to handle 4 common memory leaks</a><br><br></li>
+</ul>
+<h3 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>Concept</h3><ul>
+<li><a href="https://scotch.io/tutorials/understanding-scope-in-javascript?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Understanding Scope in JavaScript</a></li>
+<li><a href="https://auth0.com/blog/glossary-of-modern-javascript-concepts?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Glossary of Modern JavaScript Concepts: Part 1</a></li>
+<li><a href="https://rainsoft.io/7-tips-to-handle-undefined-in-javascript?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">7 tips to handle undefined in JavaScript - Dmitri Pavlutin‏</a></li>
+<li><a href="https://medium.freecodecamp.org/hard-coding-concepts-explained-with-simple-real-life-analogies-280635e98e37?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Hard Coding Concepts Explained with Simple Real-life Analogies</a></li>
+<li><a href="http://kosamari.com/notes/the-promise-of-a-burger-party?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">JavaScript Promise Explained in a Burger Party</a></li>
+<li><a href="https://medium.com/@samerbuna/coding-tip-try-to-code-without-if-statements-d06799eed231?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Coding Tip: Try to Code Without If-statements – Samer Buna</a><br><br></li>
+</ul>
+<h3 id="Funtional-Programming"><a href="#Funtional-Programming" class="headerlink" title="Funtional Programming"></a>Funtional Programming</h3><ul>
+<li><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Master the JavaScript Interview: What is Functional Programming?</a></li>
+<li><a href="https://medium.com/javascript-scene/the-rise-and-fall-and-rise-of-functional-programming-composable-software-c2d91b424c8c?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">The Rise and Fall and Rise of Functional Programming (Composing Software)</a><br><br></li>
+</ul>
+<h3 id="Interview"><a href="#Interview" class="headerlink" title="Interview"></a>Interview</h3><ul>
+<li><a href="https://medium.freecodecamp.org/the-definitive-javascript-handbook-for-a-developer-interview-44ffc6aeb54e?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">The Definitive JavaScript Handbook for a developer interview</a></li>
+<li><a href="https://www.youtube.com/watch?v=oxoFVqetl1E?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Top 10 JavaScript Interview Questions</a></li>
+<li><a href="https://dev.to/arnavaggarwal/10-javascript-concepts-you-need-to-know-for-interviews?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">10 JavaScript concepts you need to know for interviews</a><br><br></li>
+</ul>
+<h3 id="Case-Study"><a href="#Case-Study" class="headerlink" title="Case Study"></a>Case Study</h3><ul>
+<li><a href="https://www.youtube.com/watch?v=xGmXxpIj6vs?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Coding “Snake” in 4 min 30 sec (plain browser JavaScript)</a></li>
+<li><a href="https://medium.com/ladies-storm-hackathons/how-we-built-our-first-full-stack-javascript-web-app-in-three-weeks-8a4668dbd67c?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">How we built our first full-stack JavaScript web app in three weeks</a></li>
+<li><a href="https://blog.patricktriest.com/game-of-thrones-leaflet-webpack?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Build An Interactive Game of Thrones Map (Part II) - Leaflet.js &amp; Webpack</a></li>
+<li><a href="https://www.youtube.com/watch?v=zVqczFZr124?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Creating a blockchain with Javascript (Blockchain, part 1)</a></li>
+<li><a href="https://moin.world/2017/04/01/how-we-hacked-our-coffee-machine-with-javascript?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">How We Hacked Our Coffee Machine with JavaScript</a></li>
+<li><a href="https://www.youtube.com/watch?v=Zxf1mnP5zcw?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Google Maps JavaScript API Tutorial</a><br><br></li>
+</ul>
+<h3 id="Async-Await"><a href="#Async-Await" class="headerlink" title="Async Await"></a>Async Await</h3><ul>
+<li><a href="https://medium.com/@mgaafar/6-reasons-why-javascripts-async-await-blows-promises-away-tutorial-c7ec10518dd9?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">6 Reasons Why JavaScript’s Async/Await Blows Promises Away (Tutorial)</a></li>
+<li><a href="https://www.youtube.com/watch?v=NsQ2QIrQShU?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Async/Await: Modern Concurrency In JavaScript</a></li>
+<li><a href="https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await</a></li>
+<li><a href="https://www.youtube.com/watch?v=568g8hxJJp4?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">async / await in JavaScript - What, Why and How - Fun Fun Function</a></li>
+<li><a href="http://nikgrozev.com/2017/10/01/async-await?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Await and Async Explained with Diagrams and Examples</a><br><br></li>
+</ul>
+<h3 id="Concurrency"><a href="#Concurrency" class="headerlink" title="Concurrency"></a>Concurrency</h3><ul>
+<li><a href="https://webkit.org/blog/7846/concurrent-javascript-it-can-work?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Concurrent JavaScript: It can work!</a><br><br></li>
+</ul>
+<h3 id="V8"><a href="#V8" class="headerlink" title="V8"></a>V8</h3><ul>
+<li><a href="https://blog.sessionstack.com/how-javascript-works-inside-the-v8-engine-5-tips-on-how-to-write-optimized-code-ac089e62b12e?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">How JavaScript works: inside the V8 engine + 5 tips on how to write optimized code</a></li>
+<li><a href="https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Understanding V8’s Bytecode</a></li>
+<li><a href="https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">How JavaScript works: an overview of the engine, the runtime, and the call stack</a><br><br></li>
+</ul>
+<h3 id="Machine-Learning"><a href="#Machine-Learning" class="headerlink" title="Machine Learning"></a>Machine Learning</h3><ul>
+<li><a href="https://www.robinwieruch.de/neural-networks-deeplearnjs-javascript?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Neural Networks in JavaScript with deeplearn.js</a></li>
+<li><a href="https://medium.freecodecamp.org/how-to-create-a-neural-network-in-javascript-in-only-30-lines-of-code-343dafc50d49?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">How to create a Neural Network in JavaScript in only 30 lines of code</a></li>
+<li><a href="https://hackernoon.com/machine-learning-with-javascript-part-1-9b97f3ed4fe5?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Machine Learning with JavaScript : Part 1</a><br><br></li>
+</ul>
+<h3 id="Data-Visualization"><a href="#Data-Visualization" class="headerlink" title="Data Visualization"></a>Data Visualization</h3><ul>
+<li><a href="https://medium.com/@mbostock/a-better-way-to-code-2b1d2876a3a0?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">A Better Way to Code: Introducing d3.express: the integrated discovery environment.</a><br><br></li>
+</ul>
+<h3 id="Debugging"><a href="#Debugging" class="headerlink" title="Debugging"></a>Debugging</h3><ul>
+<li><a href="https://raygun.com/javascript-debugging-tips?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">The 14 JavaScript debugging tips you probably didn’t know</a></li>
+<li><a href="https://medium.freecodecamp.org/how-to-get-the-most-out-of-the-javascript-console-b57ca9db3e6d?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">How to get the most out of the JavaScript console</a><br><br></li>
+</ul>
+<h3 id="Unit-Testing"><a href="#Unit-Testing" class="headerlink" title="Unit Testing"></a>Unit Testing</h3><ul>
+<li><a href="https://www.youtube.com/watch?v=Eu35xM76kKY?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">Unit testing in JavaScript [Part 1]: Why unit testing? - Fun Fun Function</a></li>
+<li><a href="https://medium.com/powtoon-engineering/a-complete-guide-to-testing-javascript-in-2017-a217b4cd5a2a?utm_source=mybridge&amp;utm_medium=email&amp;utm_campaign=read_more" target="_blank" rel="external">An Overview of JavaScript Testing in 2017</a></li>
+</ul>
+<hr>
+<center><img src="http://ohwhjizw4.bkt.clouddn.com/ezgif.com-gif-maker.gif" style="width: 400px;"></center>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习指南/" rel="tag"># 学习指南</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/17/vue总结/" rel="next" title="vue总结">
+                <i class="fa fa-chevron-left"></i> vue总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars2.githubusercontent.com/u/7929656?v=3&s=466"
+                alt="hehe" />
+            
+              <p class="site-author-name" itemprop="name">hehe</p>
+              <p class="site-description motion-element" itemprop="description">生活不止眼前的代码，还有诗和远方的足球场</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Table-of-Contents"><span class="nav-number">1.</span> <span class="nav-text">Table of Contents</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Recommended-Learning"><span class="nav-number">1.1.</span> <span class="nav-text">Recommended Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Guide"><span class="nav-number">1.2.</span> <span class="nav-text">Guide</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-Started"><span class="nav-number">1.3.</span> <span class="nav-text">Get Started</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Webpack"><span class="nav-number">1.4.</span> <span class="nav-text">Webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Performance"><span class="nav-number">1.5.</span> <span class="nav-text">Performance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Concept"><span class="nav-number">1.6.</span> <span class="nav-text">Concept</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Funtional-Programming"><span class="nav-number">1.7.</span> <span class="nav-text">Funtional Programming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interview"><span class="nav-number">1.8.</span> <span class="nav-text">Interview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Case-Study"><span class="nav-number">1.9.</span> <span class="nav-text">Case Study</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Await"><span class="nav-number">1.10.</span> <span class="nav-text">Async Await</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Concurrency"><span class="nav-number">1.11.</span> <span class="nav-text">Concurrency</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#V8"><span class="nav-number">1.12.</span> <span class="nav-text">V8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine-Learning"><span class="nav-number">1.13.</span> <span class="nav-text">Machine Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Visualization"><span class="nav-number">1.14.</span> <span class="nav-text">Data Visualization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Debugging"><span class="nav-number">1.15.</span> <span class="nav-text">Debugging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unit-Testing"><span class="nav-number">1.16.</span> <span class="nav-text">Unit Testing</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hehe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("ac3MO4CWwkQm4gkYUEucAIbT-gzGzoHsz", "Gj2Ffa2tADTtXIHAlPEcGPjA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
