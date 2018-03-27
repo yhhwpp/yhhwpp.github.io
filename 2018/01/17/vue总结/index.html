@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://vuex.vuejs.org/zh-cn/images/vuex.png">
 <meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/gato.gif">
-<meta property="og:updated_time" content="2018-03-24T06:46:34.236Z">
+<meta property="og:updated_time" content="2018-03-27T06:50:41.686Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue总结">
 <meta name="twitter:description" content="从React转vue有半年时间，刚上手vue觉得很简单方便，不过越深入越发现vue这货比React要复杂，处处坑..">
@@ -366,6 +366,7 @@
 <h2 id="stopPropagation-与-preventDefault"><a href="#stopPropagation-与-preventDefault" class="headerlink" title="stopPropagation 与 preventDefault"></a>stopPropagation 与 preventDefault</h2><p><code>stopPropagation</code> 为阻止事件冒泡<br><code>preventDefault</code> 为阻止的默认行为</p>
 <h2 id="data-必须为函数"><a href="#data-必须为函数" class="headerlink" title="data 必须为函数"></a>data 必须为函数</h2><p>定义组件的时候data必须是一个函数<br>如：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Vue.component(<span class="string">'simple-counter'</span>, &#123;</div><div class="line">    template: <span class="string">'&lt;button v-on:click="counter += 1"&gt;&#123;&#123; counter &#125;&#125;&lt;/button&gt;'</span>,</div><div class="line">    data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            counter: <span class="number">0</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>为神马呢？官方已经给出实例原因。因为组件可能被多处使用，但它们的data是私有的，所以每个组件都要return一个新的data对象，如果共享data，修改其中一个会影响其他组件。</p>
 <h2 id="prop-转化问题"><a href="#prop-转化问题" class="headerlink" title="prop 转化问题"></a>prop 转化问题</h2><p>HTML 特性是不区分大小写的。所以，当使用的不是字符串模版，camelCased (驼峰式) 命名的 prop 需要转换为相对应的 kebab-case (短横线隔开式) 命名：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Vue.component(<span class="string">'child'</span>, &#123;</div><div class="line">    <span class="comment">// camelCase in JavaScript</span></div><div class="line">    props: [<span class="string">'myMessage'</span>],</div><div class="line">    template: <span class="string">'&lt;span&gt;&#123;&#123; myMessage &#125;&#125;&lt;/span&gt;'</span></div><div class="line">&#125;);</div><div class="line">&lt;!-- kebab-<span class="keyword">case</span> <span class="keyword">in</span> HTML --&gt;</div><div class="line">&lt;child my-message=<span class="string">"hello!"</span>&gt;&lt;/child&gt;</div></pre></td></tr></table></figure>
 <h2 id="单项数据流"><a href="#单项数据流" class="headerlink" title="单项数据流"></a>单项数据流</h2><p>prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是不会反过来。这是为了防止子组件无意修改了父组件的状态——这会让应用的数据流难以理解。</p>
