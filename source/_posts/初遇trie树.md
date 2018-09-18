@@ -5,6 +5,9 @@ tags: trie树
 categories: 算法
 ---
 今天用Ant-Design的Cascader组件的时候，数据格式为
+
+<!-- more -->
+
 ```javascript
 var data = [{
     "value": "浙江",
@@ -180,3 +183,9 @@ console.log(transObject(data, keys));
 ```
 这代码清爽多了，本质还是利用javascript的引用类型，实现类似于指针的功能。
 看来有时间得看看常用的算法了...
+
+---------
+
+<center><img src="http://ohwhjizw4.bkt.clouddn.com/graceful.gif" width="400" ></center>
+
+

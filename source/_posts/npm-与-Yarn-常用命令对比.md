@@ -7,6 +7,8 @@ categories: 前端
 
 现在基本上都在用yarn代替npm，管理包比较方便，现记录常用命令。
 
+<!-- more -->
+
 | 作用  | npm        | Yarn           |
 | -------------  | ------------- |:-------------:|
 | 安装 | npm install(i)      | yarn |
@@ -19,3 +21,9 @@ categories: 前端
 | 卸载 | npm uninstall [--save/--save-dev] | yarn remove xx   |
 | 清除缓存 | npm cache clean | yarn cache clean   |
 | 重装 | rm -rf node_modules && npm install | yarn upgrade   |
+
+
+-----------
+
+<center><img src="http://ohwhjizw4.bkt.clouddn.com/slize-it-up.gif" width="400" ></center>
+

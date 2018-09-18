@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="小程序," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="随着小程序的接口。公司在考虑到快速开发，果断决定开发小程序。总体而言，开发难度比较简单， 与流行的mvvm类似，开发只专注数据层，不关注DOM上手比较快。期间也踩了一些坑，记录了下来。">
+<meta name="keywords" content="小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序开发总结">
+<meta property="og:url" content="https://yhhwpp.github.io/2017/11/06/小程序开发总结/index.html">
+<meta property="og:site_name" content="yuanhehe&#39; blog">
+<meta property="og:description" content="随着小程序的接口。公司在考虑到快速开发，果断决定开发小程序。总体而言，开发难度比较简单， 与流行的mvvm类似，开发只专注数据层，不关注DOM上手比较快。期间也踩了一些坑，记录了下来。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://mp.weixin.qq.com/debug/wxadoc/dev/image/mina-lifecycle.png?t=20171116">
+<meta property="og:image" content="https://mp.weixin.qq.com/debug/wxadoc/dev/image/login.png?t=2017727">
+<meta property="og:image" content="https://pay.weixin.qq.com/wiki/doc/api/img/wxa-7-2.jpg">
+<meta property="og:image" content="http://ohwhjizw4.bkt.clouddn.com/boxing_800x600.gif">
+<meta property="og:updated_time" content="2018-03-30T10:16:07.172Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小程序开发总结">
+<meta name="twitter:description" content="随着小程序的接口。公司在考虑到快速开发，果断决定开发小程序。总体而言，开发难度比较简单， 与流行的mvvm类似，开发只专注数据层，不关注DOM上手比较快。期间也踩了一些坑，记录了下来。">
+<meta name="twitter:image" content="https://mp.weixin.qq.com/debug/wxadoc/dev/image/mina-lifecycle.png?t=20171116">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yhhwpp.github.io/2017/11/06/小程序开发总结/"/>
+
+
+
+
+
+  <title>小程序开发总结 | yuanhehe' blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">yuanhehe' blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2017/11/06/小程序开发总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hehe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/7929656?v=3&s=466">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yuanhehe' blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">小程序开发总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-06T21:16:30+08:00">
+                2017-11-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/微信/" itemprop="url" rel="index">
+                    <span itemprop="name">微信</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/06/小程序开发总结/" class="leancloud_visitors" data-flag-title="小程序开发总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着小程序的接口。公司在考虑到快速开发，果断决定开发小程序。总体而言，开发难度比较简单， 与流行的<code>mvvm</code>类似，开发只专注数据层，不关注<code>DOM</code>上手比较快。期间也踩了一些坑，记录了下来。</p>
+<a id="more"></a>
+<h2 id="小程序的生命周期"><a href="#小程序的生命周期" class="headerlink" title="小程序的生命周期"></a>小程序的生命周期</h2><p><img src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/mina-lifecycle.png?t=20171116" alt="生命周期"></p>
+<h2 id="路由注意事项"><a href="#路由注意事项" class="headerlink" title="路由注意事项"></a>路由注意事项</h2><ul>
+<li><code>navigateTo</code>, <code>redirectTo</code> 只能打开非 <code>tabBar</code> 页面。</li>
+<li><code>switchTab</code> 只能打开 <code>tabBar</code> 页面。</li>
+<li><code>reLaunch</code> 可以打开任意页面。</li>
+<li>页面底部的 <code>tabBar</code> 由页面决定，即只要是定义为 <code>tabBar</code> 的页面，底部都有 <code>tabBar</code>。</li>
+<li>调用页面路由带的参数可以在目标页面的onLoad中获取。</li>
+</ul>
+<h2 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h2><ul>
+<li>单位：rpx</li>
+<li>建议： 开发微信小程序时设计师可以用 iPhone6 作为视觉稿的标准。 注意： 在较小的屏幕上不可避免的会有一些毛刺，请在开发时尽量避免这种情况。</li>
+<li>支持的选择器：id， class，element， element, element， ::after， ::before</li>
+</ul>
+<h2 id="运行机制"><a href="#运行机制" class="headerlink" title="运行机制"></a>运行机制</h2><p>小程序没有重启的概念<br>当小程序进入后台，客户端会维持一段时间的运行状态，超过一定时间后（目前是5分钟）会被微信主动销毁<br>置顶的小程序不会被微信主动销毁<br>当收到系统内存告警也会进行小程序的销毁</p>
+<h2 id="代码包限制"><a href="#代码包限制" class="headerlink" title="代码包限制"></a>代码包限制</h2><p>2M大小</p>
+<h2 id="及时清理没有使用到的代码和资源"><a href="#及时清理没有使用到的代码和资源" class="headerlink" title="及时清理没有使用到的代码和资源"></a>及时清理没有使用到的代码和资源</h2><p>目前小程序打包是会将工程下所有文件都打入代码包内，也就是说，这些没有被实际使用到的库文件和资源也会被打入到代码包里，从而影响到整体代码包的大小。</p>
+<h2 id="组件列表"><a href="#组件列表" class="headerlink" title="组件列表"></a>组件列表</h2><h3 id="视图容器"><a href="#视图容器" class="headerlink" title="视图容器"></a>视图容器</h3><ul>
+<li>view</li>
+<li>scroll-view</li>
+<li>swiper</li>
+</ul>
+<h3 id="基础内容"><a href="#基础内容" class="headerlink" title="基础内容"></a>基础内容</h3><ul>
+<li>icon</li>
+<li>text</li>
+<li>progress</li>
+</ul>
+<h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><ul>
+<li>button</li>
+<li>form</li>
+<li>input</li>
+<li>checkbox</li>
+<li>radio</li>
+<li>picker</li>
+<li>picker-view</li>
+<li>slider</li>
+<li>switch</li>
+<li>label</li>
+</ul>
+<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><ul>
+<li>navigator</li>
+</ul>
+<h2 id="多媒体"><a href="#多媒体" class="headerlink" title="多媒体"></a>多媒体</h2><ul>
+<li>audio</li>
+<li>image</li>
+<li>video</li>
+</ul>
+<h2 id="客服"><a href="#客服" class="headerlink" title="客服"></a>客服</h2><ul>
+<li>contact-button</li>
+</ul>
+<h2 id="code-换取-session-key"><a href="#code-换取-session-key" class="headerlink" title="code 换取 session_key"></a>code 换取 session_key</h2><p>这是一个 HTTPS 接口，开发者服务器使用登录凭证 <code>code</code> 获取 <code>session_key</code> 和 <code>openid</code>。其中 <code>session_key</code> 是对用户数据进行加密签名的密钥。为了自身应用安全，<code>session_key</code> 不应该在网络上传输。</p>
+<h2 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h2><p>调用<code>wx.getUserInfo</code>获取<code>userInfo</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"nickName"</span>: <span class="string">"hehe"</span>,</div><div class="line">  <span class="string">"gender"</span>: <span class="number">1</span>,</div><div class="line">  <span class="string">"language"</span>: <span class="string">"zh_CN"</span>,</div><div class="line">  <span class="string">"city"</span>: <span class="string">"Guangzhou"</span>,</div><div class="line">  <span class="string">"province"</span>: <span class="string">"Shenzhen"</span>,</div><div class="line">  <span class="string">"country"</span>: <span class="string">"CN"</span>,</div><div class="line">  <span class="string">"avatarUrl"</span>: <span class="string">"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLRHCyHSM8EiavGbVY61wSvkmnOsWkWzJxjwgss7Aqa5hDZIougu9X3iauCOY9agh7iamNYRZAG81rxg/0"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>wx.chooseAddress</code>调起收货地址原生界面，并在编辑完成后返回选择的地址：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">cityName:<span class="string">"广州市"</span></div><div class="line">countyName:<span class="string">"天河区"</span></div><div class="line">detailInfo:<span class="string">"某巷某号"</span></div><div class="line">nationalCode:<span class="string">"510630"</span></div><div class="line">postalCode:<span class="string">"510000"</span></div><div class="line">provinceName:<span class="string">"广东省"</span></div><div class="line">telNumber:<span class="string">"13590452513"</span></div><div class="line">userName:<span class="string">"张三"</span></div></pre></td></tr></table></figure>
+<h2 id="wx-login-OBJECT"><a href="#wx-login-OBJECT" class="headerlink" title="wx.login(OBJECT)"></a>wx.login(OBJECT)</h2><p>调用接口获取登录凭证（code）进而换取用户登录态信息，包括用户的唯一标识（openid） 及本次登录的 会话密钥（session_key）。用户数据的加解密通讯需要依赖会话密钥完成。</p>
+<p><img src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/login.png?t=2017727" alt="img"></p>
+<h2 id="wx-checkSession-OBJECT"><a href="#wx-checkSession-OBJECT" class="headerlink" title="wx.checkSession(OBJECT)"></a>wx.checkSession(OBJECT)</h2><p>通过上述接口获得的用户登录态拥有一定的时效性。用户越久未使用小程序，用户登录态越有可能失效。反之如果用户一直在使用小程序，则用户登录态一直保持有效。具体时效逻辑由微信维护，对开发者透明。开发者只需要调用<code>wx.checkSession</code>接口检测当前用户登录态是否有效。登录态过期后开发者可以再调用<code>wx.login</code>获取新的用户登录态。</p>
+<h2 id="wx-requestPayment-OBJECT"><a href="#wx-requestPayment-OBJECT" class="headerlink" title="wx.requestPayment(OBJECT)"></a>wx.requestPayment(OBJECT)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">wx.requestPayment(&#123;</div><div class="line">   &apos;timeStamp&apos;: &apos;&apos;,</div><div class="line">   &apos;nonceStr&apos;: &apos;&apos;, // 随机32以下字符串</div><div class="line">   &apos;package&apos;: &apos;&apos;, //统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=*</div><div class="line">   &apos;signType&apos;: &apos;MD5&apos;,</div><div class="line">   &apos;paySign&apos;: &apos;&apos;, //签名</div><div class="line">   &apos;success&apos;:function(res)&#123;</div><div class="line">   &#125;,</div><div class="line">   &apos;fail&apos;:function(res)&#123;</div><div class="line">   &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><img src="https://pay.weixin.qq.com/wiki/doc/api/img/wxa-7-2.jpg" alt="img"></p>
+<h2 id="后端模板下发过程："><a href="#后端模板下发过程：" class="headerlink" title="后端模板下发过程："></a>后端模板下发过程：</h2><p>1.用<code>AppID</code>,<code>secret</code>调用接口获取<code>access_token</code></p>
+<p>2.调用接口发送模板消息, POST的参数如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"touser"</span>: <span class="string">"OPENID"</span>, <span class="comment">// 接受者的用户ID</span></div><div class="line">  <span class="string">"template_id"</span>: <span class="string">"TEMPLATE_ID"</span>,</div><div class="line">  <span class="string">"page"</span>: <span class="string">"index"</span>, <span class="comment">// 模板卡片跳转的小程序页面</span></div><div class="line">  <span class="string">"form_id"</span>: <span class="string">"FORMID"</span>, <span class="comment">// 表单提交场景下，为 submit 事件带上的 formId；支付场景下，为本次支付的</span></div><div class="line">    <span class="string">"prepay_id"</span>: <span class="number">1223</span>,</div><div class="line">  <span class="string">"data"</span>: &#123;&#125; <span class="comment">// 模板内容</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="wx-navigateTo无法打开页面"><a href="#wx-navigateTo无法打开页面" class="headerlink" title="wx.navigateTo无法打开页面"></a>wx.navigateTo无法打开页面</h2><p>一个应用同时只能打开5个页面，当已经打开了5个页面之后，wx.navigateTo不能正常打开新页面。请避免多层级的交互方式，或者使用wx.redirectTo</p>
+<h2 id="字体规范"><a href="#字体规范" class="headerlink" title="字体规范"></a>字体规范</h2><p>微信内字体的使用与所运行的系统字体保持一致，常用字号为20, 18, 17, 16,14 13, 11(pt)，使用场景具体如下：</p>
+<h2 id="工作中问题总结"><a href="#工作中问题总结" class="headerlink" title="工作中问题总结"></a>工作中问题总结</h2><p>展开符号<code>...</code>只能用于数组，暂时不能用于对象</p>
+<h2 id="target-与-currentTarget"><a href="#target-与-currentTarget" class="headerlink" title="target 与 currentTarget"></a>target 与 currentTarget</h2><ul>
+<li>target: 触发事件的源组件</li>
+<li>currentTarget: 事件绑定的当前组件。</li>
+</ul>
+<h2 id="setData-参数格式"><a href="#setData-参数格式" class="headerlink" title="setData() 参数格式"></a>setData() 参数格式</h2><p>setData 函数用于将数据从逻辑层发送到视图层（异步），同时改变对应的 this.data 的值（同步）。</p>
+<p>接受一个对象，以 key，value 的形式表示将 this.data 中的 key 对应的值改变成 value。</p>
+<p>其中 key 可以非常灵活，以数据路径的形式给出，如 array[2].message，a.b.c.d，并且不需要在 this.data 中预先定义。</p>
+<p>注意：</p>
+<p>直接修改 this.data 而不调用 this.setData 是无法改变页面的状态的，还会造成数据不一致<br>单次设置的数据不能超过1024kB，请尽量避免一次设置过多的数据。<br>示例代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">&lt;!--index.wxml--&gt;</div><div class="line">&lt;view&gt;&#123;&#123;text&#125;&#125;&lt;<span class="regexp">/view&gt;</span></div><div class="line"><span class="regexp">&lt;button bindtap="changeText"&gt; Change normal data &lt;/</span>button&gt;</div><div class="line">&lt;view&gt;&#123;&#123;num&#125;&#125;&lt;<span class="regexp">/view&gt;</span></div><div class="line"><span class="regexp">&lt;button bindtap="changeNum"&gt; Change normal num &lt;/</span>button&gt;</div><div class="line">&lt;view&gt;&#123;&#123;array[<span class="number">0</span>].text&#125;&#125;&lt;<span class="regexp">/view&gt;</span></div><div class="line"><span class="regexp">&lt;button bindtap="changeItemInArray"&gt; Change Array data &lt;/</span>button&gt;</div><div class="line">&lt;view&gt;&#123;&#123;object.text&#125;&#125;&lt;<span class="regexp">/view&gt;</span></div><div class="line"><span class="regexp">&lt;button bindtap="changeItemInObject"&gt; Change Object data &lt;/</span>button&gt;</div><div class="line">&lt;view&gt;&#123;&#123;newField.text&#125;&#125;&lt;<span class="regexp">/view&gt;</span></div><div class="line"><span class="regexp">&lt;button bindtap="addNewField"&gt; Add new data &lt;/</span>button&gt;</div><div class="line"><span class="comment">//index.js</span></div><div class="line">Page(&#123;</div><div class="line">  data: &#123;</div><div class="line">    text: <span class="string">'init data'</span>,</div><div class="line">    num: <span class="number">0</span>,</div><div class="line">    array: [&#123;<span class="attr">text</span>: <span class="string">'init data'</span>&#125;],</div><div class="line">    object: &#123;</div><div class="line">      text: <span class="string">'init data'</span></div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  changeItemInArray: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// you can use this way to modify a danamic data path</span></div><div class="line">    <span class="keyword">this</span>.setData(&#123;</div><div class="line">      <span class="string">'array[0].text'</span>:<span class="string">'changed data'</span></div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  changeItemInObject: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.setData(&#123;</div><div class="line">      <span class="string">'object.text'</span>: <span class="string">'changed data'</span></div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">  addNewField: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.setData(&#123;</div><div class="line">      <span class="string">'newField.text'</span>: <span class="string">'new data'</span></div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="onLoad-与-onShow"><a href="#onLoad-与-onShow" class="headerlink" title="onLoad 与 onShow"></a>onLoad 与 onShow</h2><ul>
+<li>onLoad: 一个页面只会调用一次，可以在 onLoad 中获取打开当前页面所调用的 query 参数。（注意一个路由query不一样，认为是两个页面，onLoad也会调用）</li>
+<li>onShow: 每次打开页面都会调用一次</li>
+</ul>
+<hr>
+<center><img src="http://ohwhjizw4.bkt.clouddn.com/boxing_800x600.gif" width="400"></center>
+
+
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/小程序/" rel="tag"># 小程序</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/06/lacesar前端知识点参考/" rel="next" title="lacesar前端知识点参考">
+                <i class="fa fa-chevron-left"></i> lacesar前端知识点参考
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/17/vue总结/" rel="prev" title="vue总结">
+                vue总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars2.githubusercontent.com/u/7929656?v=3&s=466"
+                alt="hehe" />
+            
+              <p class="site-author-name" itemprop="name">hehe</p>
+              <p class="site-description motion-element" itemprop="description">生活不止眼前的代码，还有诗和远方的足球场</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小程序的生命周期"><span class="nav-number">1.</span> <span class="nav-text">小程序的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由注意事项"><span class="nav-number">2.</span> <span class="nav-text">路由注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wxss"><span class="nav-number">3.</span> <span class="nav-text">wxss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行机制"><span class="nav-number">4.</span> <span class="nav-text">运行机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码包限制"><span class="nav-number">5.</span> <span class="nav-text">代码包限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#及时清理没有使用到的代码和资源"><span class="nav-number">6.</span> <span class="nav-text">及时清理没有使用到的代码和资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件列表"><span class="nav-number">7.</span> <span class="nav-text">组件列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#视图容器"><span class="nav-number">7.1.</span> <span class="nav-text">视图容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础内容"><span class="nav-number">7.2.</span> <span class="nav-text">基础内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单"><span class="nav-number">7.3.</span> <span class="nav-text">表单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导航"><span class="nav-number">8.</span> <span class="nav-text">导航</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多媒体"><span class="nav-number">9.</span> <span class="nav-text">多媒体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客服"><span class="nav-number">10.</span> <span class="nav-text">客服</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#code-换取-session-key"><span class="nav-number">11.</span> <span class="nav-text">code 换取 session_key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户信息"><span class="nav-number">12.</span> <span class="nav-text">用户信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wx-login-OBJECT"><span class="nav-number">13.</span> <span class="nav-text">wx.login(OBJECT)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wx-checkSession-OBJECT"><span class="nav-number">14.</span> <span class="nav-text">wx.checkSession(OBJECT)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wx-requestPayment-OBJECT"><span class="nav-number">15.</span> <span class="nav-text">wx.requestPayment(OBJECT)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端模板下发过程："><span class="nav-number">16.</span> <span class="nav-text">后端模板下发过程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wx-navigateTo无法打开页面"><span class="nav-number">17.</span> <span class="nav-text">wx.navigateTo无法打开页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字体规范"><span class="nav-number">18.</span> <span class="nav-text">字体规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作中问题总结"><span class="nav-number">19.</span> <span class="nav-text">工作中问题总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#target-与-currentTarget"><span class="nav-number">20.</span> <span class="nav-text">target 与 currentTarget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setData-参数格式"><span class="nav-number">21.</span> <span class="nav-text">setData() 参数格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onLoad-与-onShow"><span class="nav-number">22.</span> <span class="nav-text">onLoad 与 onShow</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hehe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("ac3MO4CWwkQm4gkYUEucAIbT-gzGzoHsz", "Gj2Ffa2tADTtXIHAlPEcGPjA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

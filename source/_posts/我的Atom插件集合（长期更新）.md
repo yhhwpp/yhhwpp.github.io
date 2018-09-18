@@ -9,6 +9,7 @@ categories: 前端
 
 本人依着宁需勿滥的原则，列出我的常用插件列表，仅供参考。
 
+<!-- more -->
 
 
 ## hyperclick, js-hyperclick
