@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javacript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="| 原文：Debouncing and Throttling Explained Through Examples 防抖（Debounce）和节流（throttle）都是用来控制某个函数在一定时间内执行多少次的技巧，两者相似而又不同。 当我们给 DOM 绑定事件的时候，加了防抖和节流的函数变得特别有用。为什么呢？因为我们在事件和函数执行之间加了一个控制层。记住，我们是无法控制 DOM 事件触发频率">
+<meta name="keywords" content="javacript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实例解析防抖动（Debouncing）和节流阀（Throttling）">
+<meta property="og:url" content="https://yhhwpp.github.io/2019/04/01/实例解析防抖动（Debouncing）和节流阀（Throttling）/index.html">
+<meta property="og:site_name" content="yuanhehe&#39; blog">
+<meta property="og:description" content="| 原文：Debouncing and Throttling Explained Through Examples 防抖（Debounce）和节流（throttle）都是用来控制某个函数在一定时间内执行多少次的技巧，两者相似而又不同。 当我们给 DOM 绑定事件的时候，加了防抖和节流的函数变得特别有用。为什么呢？因为我们在事件和函数执行之间加了一个控制层。记住，我们是无法控制 DOM 事件触发频率">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-images.githubusercontent.com/7929656/55302919-08155280-5476-11e9-8834-f62082da9f30.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/7929656/55302993-5c203700-5476-11e9-80c2-8574fc5685fd.png">
+<meta property="og:updated_time" content="2019-04-01T04:59:29.170Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实例解析防抖动（Debouncing）和节流阀（Throttling）">
+<meta name="twitter:description" content="| 原文：Debouncing and Throttling Explained Through Examples 防抖（Debounce）和节流（throttle）都是用来控制某个函数在一定时间内执行多少次的技巧，两者相似而又不同。 当我们给 DOM 绑定事件的时候，加了防抖和节流的函数变得特别有用。为什么呢？因为我们在事件和函数执行之间加了一个控制层。记住，我们是无法控制 DOM 事件触发频率">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/7929656/55302919-08155280-5476-11e9-8834-f62082da9f30.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yhhwpp.github.io/2019/04/01/实例解析防抖动（Debouncing）和节流阀（Throttling）/"/>
+
+
+
+
+
+  <title>实例解析防抖动（Debouncing）和节流阀（Throttling） | yuanhehe' blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">yuanhehe' blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yhhwpp.github.io/2019/04/01/实例解析防抖动（Debouncing）和节流阀（Throttling）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hehe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/7929656?v=3&s=466">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yuanhehe' blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">实例解析防抖动（Debouncing）和节流阀（Throttling）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-01T11:45:44+08:00">
+                2019-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/04/01/实例解析防抖动（Debouncing）和节流阀（Throttling）/" class="leancloud_visitors" data-flag-title="实例解析防抖动（Debouncing）和节流阀（Throttling）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>| 原文：<a href="https://css-tricks.com/debouncing-throttling-explained-examples/" target="_blank" rel="external">Debouncing and Throttling Explained Through Examples</a></p>
+<p>防抖（Debounce）和节流（throttle）都是用来控制某个函数在一定时间内执行多少次的技巧，两者相似而又不同。</p>
+<p>当我们给 DOM 绑定事件的时候，加了防抖和节流的函数变得特别有用。为什么呢？因为我们在事件和函数执行之间加了一个控制层。记住，我们是无法控制 DOM 事件触发频率的。</p>
+<a id="more"></a>
+<p>看下滚动事件的例子：</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="Scroll events counter" src="//codepen.io/yhhwpp-the-typescripter/embed/YMzOPj/?height=265&theme-id=0&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true"><br>  See the Pen <a href="https://codepen.io/yhhwpp-the-typescripter/pen/YMzOPj/" target="_blank" rel="external">Scroll events counter</a> by hehe<br>  (<a href="https://codepen.io/yhhwpp-the-typescripter" target="_blank" rel="external">@yhhwpp-the-typescripter</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+<p>当使用触控板，滚动滚轮，或者拖拽滚动条的时候，一秒可以轻松触发30次事件。经我的测试，在智能手机上，慢慢滚动一下，一秒可以触发事件100次之多。这么高的执行频率，你的滚动回调函数压力大吗？</p>
+<p>早在2011年，Twitter 网站抛出了一个问题：向下滚动 Twitter 信息流的时候，变得很慢，很迟钝。John Resig 发表了<a href="https://johnresig.com/blog/learning-from-twitter/" target="_blank" rel="external">一篇博客</a>解释这个问题，文中解释到直接给 scroll 事件关联昂贵的函数，是多么糟糕的主意。</p>
+<p>John（5年前）建议的解决方案是，在 onScroll 事件外部，每 250ms 循环执行一次。简单的技巧，避免了影响用户体验。</p>
+<p>现如今，有一些稍微高端的方式处理事件。我来结合用例介绍下 <code>Debounce``，Throttle</code> 和 <code>requestAnimationFrame</code> 吧。</p>
+<h2 id="防抖动（Debounce）"><a href="#防抖动（Debounce）" class="headerlink" title="防抖动（Debounce）"></a>防抖动（Debounce）</h2><p>防抖技术可以把多个顺序地调用合并成一次。</p>
+<p><img src="https://user-images.githubusercontent.com/7929656/55302919-08155280-5476-11e9-8834-f62082da9f30.png" alt="debounce"></p>
+<p>假想一下，你在电梯中，门快要关了，突然有人准备上来。电梯并没有改变楼层，而是再次打开梯门。电梯延迟了改变楼层的功能，但是优化了资源。</p>
+<p>在顶部按钮上点击或移动鼠标试一下：</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="Debounce. Trailing" src="//codepen.io/dcorb/embed/KVxGqN/?height=265&theme-id=0&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true"><br>  See the Pen <a href="https://codepen.io/dcorb/pen/KVxGqN/" target="_blank" rel="external">Debounce. Trailing</a> by Corbacho<br>  (<a href="https://codepen.io/dcorb" target="_blank" rel="external">@dcorb</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+<p>你可以看到连续快速的事件是如何被一个 debounce 事件替代的。但是如果事件触发的时间间隔过长，debounce 则不会生效。</p>
+<h3 id="前缘（或者“immediate”）"><a href="#前缘（或者“immediate”）" class="headerlink" title="前缘（或者“immediate”）"></a>前缘（或者“immediate”）</h3><p>你会发现，直到事件停止快速执行以后，debounce 事件才会触发相应功能。为何不立即触发呢？那样的话就跟原本的非 debounce 处理无异了。</p>
+<p>直到两次快速调用之间的停顿结束，事件才会再次触发。</p>
+<p>这是带 <code>leading</code> 标记的例子：</p>
+<p><img src="https://user-images.githubusercontent.com/7929656/55302993-5c203700-5476-11e9-80c2-8574fc5685fd.png" alt="p2"></p>
+<p>前缘 <code>debounce</code> 的例子</p>
+<p>在 <code>underscore.js</code> 中，选项叫 <code>immediate</code> ，而不是 <code>leading</code>：</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="Debounce. Leading" src="//codepen.io/yhhwpp-the-typescripter/embed/yrLxOJ/?height=265&theme-id=0&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true"><br>  See the Pen <a href="https://codepen.io/yhhwpp-the-typescripter/pen/yrLxOJ/" target="_blank" rel="external">Debounce. Leading</a> by hehe<br>  (<a href="https://codepen.io/yhhwpp-the-typescripter" target="_blank" rel="external">@yhhwpp-the-typescripter</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+<h3 id="Debounce-实现"><a href="#Debounce-实现" class="headerlink" title="Debounce 实现"></a>Debounce 实现</h3><p>我首次看到 debounce 的 JavaScript 实现是在 2009 年的 John Hann 的博文。</p>
+<p>不久后，Ben Alman 做了个 jQuery 插件（不再维护），一年后 Jeremy Ashkenas 把它加入了 underscore.js。而后加入了 Lodash 。</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="New example" src="//codepen.io/yhhwpp-the-typescripter/embed/eoYLZv/?height=265&theme-id=0&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true"><br>  See the Pen <a href="https://codepen.io/yhhwpp-the-typescripter/pen/eoYLZv/" target="_blank" rel="external">New example</a> by hehe<br>  (<a href="https://codepen.io/yhhwpp-the-typescripter" target="_blank" rel="external">@yhhwpp-the-typescripter</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+
+<p><code>Lodash</code> 给 <code>_.debounce</code> 和 <code>_.throttle</code> 添加了不少特性。之前的 <code>immediate</code> 被 <code>leading（最前面）</code> 和 <code>trailing（最后面）</code> 选项取代。你可以选一种，或者都选，默认只有 trailing 启用。</p>
+<p>新的 <code>maxWait</code> 选项（仅 <code>Lodash</code> <code>有）本文未提及，但是也很有用。事实上，throttle</code> 方法是用 <code>_.debounce</code> 加 <code>maxWait</code> 实现的，你可以看 <code>lodash</code> 源码。</p>
+<h3 id="Debounce-实例"><a href="#Debounce-实例" class="headerlink" title="Debounce 实例"></a>Debounce 实例</h3><p><strong>调整大小的例子</strong></p>
+<p>调整桌面浏览器窗口大小的时候，会触发很多次 resize 事件。</p>
+<p>看下面 demo：</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="Debounce Resize Event Example" src="//codepen.io/yhhwpp-the-typescripter/embed/YMzOqJ/?height=265&theme-id=0&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true"><br>  See the Pen <a href="https://codepen.io/yhhwpp-the-typescripter/pen/YMzOqJ/" target="_blank" rel="external">Debounce Resize Event Example</a> by hehe<br>  (<a href="https://codepen.io/yhhwpp-the-typescripter" target="_blank" rel="external">@yhhwpp-the-typescripter</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+<p>如你所见，我们为 resize 事件使用了默认的 trailing 选项，因为我们只关心用户停止调整大小后的最终值。</p>
+<p><strong>基于 AJAX 请求的自动完成功能，通过 keypress 触发</strong></p>
+<p>为什么用户还在输入的时候，每隔50ms就向服务器发送一次 AJAX 请求？_.debounce 可以帮忙，当用户停止输入的时候，再发送请求。</p>
+<p>此处也不需要 <code>leading</code> 标记，我们想等最后一个字符输完。</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="Debouncing keystrokes Example" src="//codepen.io/yhhwpp-the-typescripter/embed/YMzOWJ/?height=265&theme-id=0&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true"><br>  See the Pen <a href="https://codepen.io/yhhwpp-the-typescripter/pen/YMzOWJ/" target="_blank" rel="external">Debouncing keystrokes Example</a> by hehe<br>  (<a href="https://codepen.io/yhhwpp-the-typescripter" target="_blank" rel="external">@yhhwpp-the-typescripter</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+<p>相似的使用场景还有，直到用户输完，才验证输入的正确性，显示错误信息。</p>
+<h2 id="如何使用-debounce-和-throttle-以及常见的坑"><a href="#如何使用-debounce-和-throttle-以及常见的坑" class="headerlink" title="如何使用 debounce 和 throttle 以及常见的坑"></a>如何使用 debounce 和 throttle 以及常见的坑</h2><p>自己造一个 debounce / throttle 的轮子看起来多么诱人，或者随便找个博文复制过来。我是建议直接使用 underscore 或 Lodash 。如果仅需要 <em>.debounce 和 </em>.throttle 方法，可以使用 Lodash 的自定义构建工具，生成一个 2KB 的压缩库。使用以下的简单命令即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm i -g lodash-cli</div><div class="line">lodash-cli include=debounce,throttle</div></pre></td></tr></table></figure>
+<p>常见的坑是，不止一次地调用 _.debounce 方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 错误</div><div class="line">$(window).on(&apos;scroll&apos;, function() &#123;</div><div class="line">   _.debounce(doSomething, 300); </div><div class="line">&#125;);</div><div class="line">// 正确</div><div class="line">$(window).on(&apos;scroll&apos;, _.debounce(doSomething, 200));</div></pre></td></tr></table></figure>
+<p>debounce 方法保存到一个变量以后，就可以用它的私有方法 debounced_version.cancel()，lodash 和 underscore.js 都有效。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var debounced_version = _.debounce(doSomething, 200);</div><div class="line">$(window).on(&apos;scroll&apos;, debounced_version);</div><div class="line">// 如果需要的话</div><div class="line">debounced_version.cancel();</div></pre></td></tr></table></figure>
+<h2 id="Throttle（节流阀）"><a href="#Throttle（节流阀）" class="headerlink" title="Throttle（节流阀）"></a>Throttle（节流阀）</h2><p>使用 _.throttle 的时候，只允许一个函数在 X 毫秒内执行一次。</p>
+<p>跟 debounce 主要的不同在于，throttle 保证 X 毫秒内至少执行一次。</p>
+<h3 id="节流阀实例"><a href="#节流阀实例" class="headerlink" title="节流阀实例"></a>节流阀实例</h3><p><strong>无限滚动</strong></p>
+<p>用户向下滚动无限滚动页面，需要检查滚动位置距底部多远，如果邻近底部了，我们可以发 AJAX 请求获取更多的数据插入到页面中。</p>
+<p>我们心爱的 <code>_.debounce</code> 就不适用了，只有当用户停止滚动的时候它才会触发。只要用户滚动至邻近底部时，我们就想获取内容。</p>
+<p>使用 <code>_.throttle</code> 可以保证我们不断检查距离底部有多远</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="Infinite scrolling throttled" src="//codepen.io/yhhwpp-the-typescripter/embed/wZvEow/?height=265&theme-id=0&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true"><br>  See the Pen <a href="https://codepen.io/yhhwpp-the-typescripter/pen/wZvEow/" target="_blank" rel="external">Infinite scrolling throttled</a> by hehe<br>  (<a href="https://codepen.io/yhhwpp-the-typescripter" target="_blank" rel="external">@yhhwpp-the-typescripter</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+
+<h4 id="requestAnimationFrame（rAF）"><a href="#requestAnimationFrame（rAF）" class="headerlink" title="requestAnimationFrame（rAF）"></a>requestAnimationFrame（rAF）</h4><p>requestAnimationFrame 是另一种限速执行的方式。</p>
+<p>跟 _.throttle(dosomething, 16) 等价。它是高保真的，如果追求更好的精确度的话，可以用浏览器原生的 API 。</p>
+<p>可以使用 rAF API 替换 throttle 方法，考虑一下优缺点：</p>
+<p><strong>优点</strong></p>
+<ul>
+<li>动画保持 60fps（每一帧 16 ms），浏览器内部决定渲染的最佳时机</li>
+<li>简洁标准的 API，后期维护成本低</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>动画的开始/取消需要开发者自己控制，不像 ‘.debounce’ 或 ‘.throttle’由函数内部处理。</li>
+<li>浏览器标签未激活时，一切都不会执行。</li>
+<li>尽管所有的现代浏览器都支持 rAF ，IE9，Opera Mini 和 老的 Android 还是需要打补丁。</li>
+<li>Node.js 不支持，无法在服务器端用于文件系统事件。</li>
+<li>根据经验，如果 JavaScript 方法需要绘制或者直接改变属性，我会选择 requestAnimationFrame，只要涉及到重新计算元素位置，就可以使用它。</li>
+</ul>
+<p>涉及到 AJAX 请求，添加/移除 class （可以触发 CSS 动画），我会选择 <em>.debounce 或者 </em>.throttle ，可以设置更低的执行频率（例子中的200ms 换成16ms）。</p>
+<h4 id="rAF-实例"><a href="#rAF-实例" class="headerlink" title="rAF 实例"></a>rAF 实例</h4><p>灵感来自于 Paul Lewis 的文章，我将用 requestAnimationFrame 控制 scroll 。</p>
+<p>16ms 的 _.throttle 拿来做对比，性能相仿，用于更复杂的场景时，rAF 可能效果更佳。</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="Scroll comparison requestAnimationFrame vs throttle" src="//codepen.io/yhhwpp-the-typescripter/embed/xexaRY/?height=265&theme-id=0&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true"><br>  See the Pen <a href="https://codepen.io/yhhwpp-the-typescripter/pen/xexaRY/" target="_blank" rel="external">Scroll comparison requestAnimationFrame vs throttle</a> by hehe<br>  (<a href="https://codepen.io/yhhwpp-the-typescripter" target="_blank" rel="external">@yhhwpp-the-typescripter</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+
+
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>使用 debounce，throttle 和 requestAnimationFrame 都可以优化事件处理，三者各不相同，又相辅相成</p>
+<p>总之：</p>
+<ul>
+<li><p>debounce：把触发非常频繁的事件（比如按键）合并成一次执行。</p>
+</li>
+<li><p>throttle：保证每 X 毫秒恒定的执行次数，比如每200ms检查下滚动位置，并触发 CSS 动画。</p>
+</li>
+<li><p>requestAnimationFrame：可替代 throttle ，函数需要重新计算和渲染屏幕上的元素时，想保证动画或变化的平滑性，可以用它。注意：IE9 不支持。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javacript/" rel="tag"># javacript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/17/我的-2018-年度总结/" rel="next" title="我的 2018 年度总结">
+                <i class="fa fa-chevron-left"></i> 我的 2018 年度总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars2.githubusercontent.com/u/7929656?v=3&s=466"
+                alt="hehe" />
+            
+              <p class="site-author-name" itemprop="name">hehe</p>
+              <p class="site-description motion-element" itemprop="description">生活不止眼前的代码，还有诗和远方的足球场</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#防抖动（Debounce）"><span class="nav-number">1.</span> <span class="nav-text">防抖动（Debounce）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前缘（或者“immediate”）"><span class="nav-number">1.1.</span> <span class="nav-text">前缘（或者“immediate”）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Debounce-实现"><span class="nav-number">1.2.</span> <span class="nav-text">Debounce 实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Debounce-实例"><span class="nav-number">1.3.</span> <span class="nav-text">Debounce 实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用-debounce-和-throttle-以及常见的坑"><span class="nav-number">2.</span> <span class="nav-text">如何使用 debounce 和 throttle 以及常见的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Throttle（节流阀）"><span class="nav-number">3.</span> <span class="nav-text">Throttle（节流阀）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#节流阀实例"><span class="nav-number">3.1.</span> <span class="nav-text">节流阀实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#requestAnimationFrame（rAF）"><span class="nav-number">3.1.1.</span> <span class="nav-text">requestAnimationFrame（rAF）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rAF-实例"><span class="nav-number">3.1.2.</span> <span class="nav-text">rAF 实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hehe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("ac3MO4CWwkQm4gkYUEucAIbT-gzGzoHsz", "Gj2Ffa2tADTtXIHAlPEcGPjA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
