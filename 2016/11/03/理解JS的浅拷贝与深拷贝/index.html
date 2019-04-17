@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="yuanhehe&#39; blog">
 <meta property="og:description" content="JS 中的浅拷贝与深拷贝，只是针对复杂数据类型（Object，Array）的复制问题。浅拷贝与深拷贝都可以实现在已有对象上再生出一份的作用。但是对象的实例是存储在堆内存中然后通过一个引用值去操作对象，由此拷贝的时候就存在两种情况了：拷贝引用和拷贝实例，这也是浅拷贝和深拷贝的区别。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/giphy%20%281%29.gif">
-<meta property="og:updated_time" content="2017-11-06T11:22:16.825Z">
+<meta property="og:image" content="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png">
+<meta property="og:updated_time" content="2019-04-17T03:07:30.578Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解JS的浅拷贝与深拷贝">
 <meta name="twitter:description" content="JS 中的浅拷贝与深拷贝，只是针对复杂数据类型（Object，Array）的复制问题。浅拷贝与深拷贝都可以实现在已有对象上再生出一份的作用。但是对象的实例是存储在堆内存中然后通过一个引用值去操作对象，由此拷贝的时候就存在两种情况了：拷贝引用和拷贝实例，这也是浅拷贝和深拷贝的区别。">
-<meta name="twitter:image" content="http://ofstpx613.bkt.clouddn.com/giphy%20%281%29.gif">
+<meta name="twitter:image" content="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png">
 
 
 
@@ -358,7 +358,8 @@
 <h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>深拷贝后，两个对象，包括其内部的元素互不干扰。常见方法有<code>JSON.parse()</code>,<code>JSON.stringify()</code>，<code>jQury</code>的<code>$.extend(true,{},obj)</code>，<code>lodash</code>的<code>_.cloneDeep</code>和<code>_.clone(value, true)</code>。例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = &#123;c: &#123;d: 1&#125;&#125;;</div><div class="line">var b = $.extend(true, &#123;&#125;, a);</div><div class="line">console.log(a === b); // 输出false</div><div class="line">a.c.d = 3;</div><div class="line">console.log(b.c.d); // 输出 1，没有改变。</div></pre></td></tr></table></figure>
 <hr>
-<center><img src="http://ofstpx613.bkt.clouddn.com/giphy%20%281%29.gif" width="400"></center>
+<center><img src="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png" width="180"></center>
+
 
       
     </div>

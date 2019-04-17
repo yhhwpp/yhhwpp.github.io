@@ -88,8 +88,8 @@
 <meta property="og:description" content="从React转vue有半年时间，刚上手vue觉得很简单方便，不过越深入越发现vue这货比React要复杂，处处坑..">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://vuex.vuejs.org/zh-cn/images/vuex.png">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/gato.gif">
-<meta property="og:updated_time" content="2018-03-27T06:50:41.686Z">
+<meta property="og:image" content="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png">
+<meta property="og:updated_time" content="2019-04-17T03:07:30.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue总结">
 <meta name="twitter:description" content="从React转vue有半年时间，刚上手vue觉得很简单方便，不过越深入越发现vue这货比React要复杂，处处坑..">
@@ -395,7 +395,7 @@
 <h2 id="vue-apollo-与-vuex-结合一般有两种方法-1"><a href="#vue-apollo-与-vuex-结合一般有两种方法-1" class="headerlink" title="vue-apollo 与 vuex 结合一般有两种方法"></a>vue-apollo 与 vuex 结合一般有两种方法</h2><p>第一种：<br> apollo 这个对象里加一个属性 result，第一个参数是 graphql 返回的结果，然后手动存进 vuex<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  data: <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</div><div class="line">    posts: []</div><div class="line">  &#125;),</div><div class="line"></div><div class="line">  apollo: &#123;</div><div class="line">    posts: &#123;</div><div class="line">      query: postsQuery,</div><div class="line">      loadingKey: <span class="string">'loading'</span>,</div><div class="line">      result(data)&#123;</div><div class="line">        <span class="keyword">this</span>.$store.dispatch(<span class="string">'get_posts'</span>, data)</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 <p>第二种方法：<br>vuex 里的获取函数直接写 Vue.prototype.$apollo.query(…)</p>
 <hr>
-<center><img src="http://ofstpx613.bkt.clouddn.com/gato.gif" width="400"></center>
+<center><img src="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png" width="180"></center>
       
     </div>
     

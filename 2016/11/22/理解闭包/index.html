@@ -88,8 +88,8 @@
 <meta property="og:description" content="MDN的解释：  闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/1406241508-581b4feb715e3_articlex.png">
-<meta property="og:image" content="http://ofstpx613.bkt.clouddn.com/2015120411242959.gif">
-<meta property="og:updated_time" content="2017-11-06T12:18:27.271Z">
+<meta property="og:image" content="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png">
+<meta property="og:updated_time" content="2019-04-17T03:07:30.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解闭包">
 <meta name="twitter:description" content="MDN的解释：  闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。">
@@ -365,7 +365,7 @@
 <p>解决办法1：用<code>ES6</code> 的 <code>let</code> 代替 <code>var</code>。<br>解决办法2：用立即执行函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function A()&#123;</div><div class="line">    var funs = [];</div><div class="line">    for(var i = 0; i &lt; 10; i++)&#123;</div><div class="line">       funs[i] = function tmp1(n)&#123; // tmp1可忽略不写</div><div class="line">            return function tmp2()&#123; // tmp2可忽略不写</div><div class="line">                return n;</div><div class="line">            &#125;</div><div class="line">       &#125;(i)</div><div class="line">    &#125;</div><div class="line">    return funs;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><code>tmp1</code>是立即执行函数。<em>定义之后立即执行</em>，即把i的值立即传递给n，然后再返回<code>tmp2</code>,此时执行10次，生成了10个<code>tmp2</code>的活动变量。每个<code>tmp2</code>变量对象保存的就是循环i的值。</p>
 <hr>
-<center><img src="http://ofstpx613.bkt.clouddn.com/2015120411242959.gif" width="400"></center>
+<center><img src="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png" width="180"></center>
 
       
     </div>
