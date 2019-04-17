@@ -47,5 +47,5 @@ function shuffle(arr) {
 
 -----------
 
-<center><img src="http://ofstpx613.bkt.clouddn.com/d_astro1_3.gif" width="400" ></center>
+<center><img src="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png" width="180" ></center>
 

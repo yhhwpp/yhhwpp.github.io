@@ -74,4 +74,4 @@ width 表示设备宽度（320px），device-width表示虚拟视图的宽度（
 
 ---------------
 
-<center><img src="http://ohwhjizw4.bkt.clouddn.com/kick_push_dribbble.gif" width="400" ></center>
+<center><img src="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png" width="180" ></center>

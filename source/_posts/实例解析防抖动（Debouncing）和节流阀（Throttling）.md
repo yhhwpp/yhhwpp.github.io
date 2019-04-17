@@ -211,4 +211,10 @@ requestAnimationFrame 是另一种限速执行的方式。
 
 - requestAnimationFrame：可替代 throttle ，函数需要重新计算和渲染屏幕上的元素时，想保证动画或变化的平滑性，可以用它。注意：IE9 不支持。
 
+-----
+
+
+<center><img src="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png" width="180" ></center>
+
+
 

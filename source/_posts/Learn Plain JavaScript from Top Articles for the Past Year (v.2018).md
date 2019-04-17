@@ -161,5 +161,5 @@ B) Advanced: [Advanced JavaScript: Become a Senior JS developer. Interview quest
 ----
 
 
-<center><img src="http://ohwhjizw4.bkt.clouddn.com/ezgif.com-gif-maker.gif" style="width: 400px;"/></center>
+<center><img src="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png" style="width: 400px;"/></center>
 

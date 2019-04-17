@@ -223,4 +223,4 @@ vuex 里的获取函数直接写 Vue.prototype.$apollo.query(…)
 
 ---------
 
-<center><img src="http://ofstpx613.bkt.clouddn.com/gato.gif" width="400" ></center>
+<center><img src="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png" width="180" ></center>

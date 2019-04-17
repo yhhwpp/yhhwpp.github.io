@@ -54,3 +54,8 @@ Atom的选中效果不是很明显，推荐用这个插件，选中时，相同�
 ![autocomplete-paths](http://ohwhjizw4.bkt.clouddn.com/687474703a2f2f73312e64697265637475706c6f61642e6e65742f696d616765732f3134303431312f70356b76696665362e676966.gif)
 
 自动路径提示。写 `import` 模块的时候，灰常好使。[链接](https://atom.io/packages/autocomplete-paths)
+
+
+---- 
+
+<center><img src="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png" width="180" ></center>

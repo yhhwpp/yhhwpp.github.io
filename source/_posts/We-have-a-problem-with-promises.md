@@ -561,3 +561,7 @@ Answer:
 
 > 声明：在这些例子中，我假定 `doSomething()` 和 `doSomethingElse()` 均返回 promises，并且这些 promises 代表某些在 JavaScript event loop (如 IndexedDB, network, `setTimeout`) 之外的某些工作结束，这也是为何它们在某些时候表现起来像是并行执行的意义。这里是一个模拟用的 [JSBin](http://jsbin.com/tuqukakawo/1/edit?js,console,output)。
 
+
+---------
+
+<center><img src="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png" width="180" ></center>

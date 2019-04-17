@@ -41,4 +41,4 @@ console.log(A());//1
 
 -----------
 
-<center><img src="http://ofstpx613.bkt.clouddn.com/tumblr_oc7w5t9Sqj1rs8pywo1_r1_500.gif" width="400" ></center>
+<center><img src="https://subscription-1255463026.cos.ap-guangzhou.myqcloud.com/subscription.png" width="180" ></center>
